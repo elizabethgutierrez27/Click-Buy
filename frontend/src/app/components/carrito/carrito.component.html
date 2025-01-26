@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Superama</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #19246dda;">
+  <div class="container-fluid" style="background-color: #04092cda;">
+    <a class="navbar-brand" href="#">
+      <img src="assets/SUPERAMA_Logo.png" alt="logo" width="80" height="80" class="d-inline-block align-top" style="margin-right: 0px;">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active custom-font" aria-current="page" href="#">Superama</a>
+        </li>
+      </ul>
+      <a href="login" style="cursor: pointer; color: white; font-size: 1.5rem; padding: 15px;">
+        <i class="fas fa-user"></i>
+      </a>
+    </div>
+  </div>
+</nav>
+<body>
+ <!-- Main Content -->
+ <div class="container-fluid mt-4">
+  <div class="row">
+    <!-- Escáner -->
+    <div class="col-3 mb-4">
+      <div class="card h-50" style="align-items: center;">
+        <button type="button" class="btn btn-primary" style="background-color: #04092cda; margin: 10px;" (click)="iniciarEscaneoContinuo()">Escanear Nuevo Producto</button>
+        <div class="scanner-section mt-5">
+          <video #video id="video" width="300" height="200" autoplay style="margin: 10px;"></video>
+        </div>
+      </div>
+      <br>
+      <div class="card h-50" style="align-items: center;">
+        <div class="card-header">
+          Buscar Producto por Código
+        </div>
+        <div class="card-body">
+          <input type="number" [(ngModel)]="codigoProductoBuscado" placeholder="Ingrese el código de barras" class="form-control" />
+          <button (click)="buscarProductoPorCodigoManual()" class="btn btn-primary mt-2">Buscar Producto</button>
+        </div>
+      </div>
+    </div>
+
+    
+    <!-- Carrito -->
+    <div class="col-6 mb-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5>Carrito</h5><small>({{ productos.length }} artículos)</small>
+          <div *ngIf="productos.length === 0">
+            <p>No hay productos en el carrito.</p>
+          </div>
+          <!-- Productos -->
+          <div *ngFor="let producto of productos" class="cart-item d-flex justify-content-between align-items-center mb-3">
+            <div class="item-image">
+              <img [src]="producto.ImagenURL" alt="{{ producto.Nombre }}"  />
+            </div>
+            <div>
+              <p class="m-0">{{producto.Nombre}}</p>
+              <!-- <small class="text-muted">{{producto.CategoriaId}}</small> -->
+              <div class="quantity-control mt-2 d-flex align-items-center">
+                <button (click)="decrementarCantidad(producto)">-</button>
+                <span class="mx-2">{{ producto.CantidadEnCarrito }}</span>
+                <button (click)="incrementarCantidad(producto)">+</button>
+              </div>
+            </div>
+            <div>
+              <p class="m-0">{{producto.Precio | currency }}</p>
+              <p class="text-muted">Subtotal: {{ (producto.Precio * (producto.CantidadEnCarrito ?? 0)) | currency }}</p>
+            </div>
+            <button class="btn btn-danger btn-sm" (click)="eliminarProducto(producto)">Eliminar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Resumen de Compra y Descuento -->
+    <div class="col-3 mb-4">
+      <div class="card h-100">
+        <div class="card-header">
+          <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="resumen-tab" data-bs-toggle="tab" href="#resumen" role="tab" aria-controls="resumen" aria-selected="false">Resumen de Compra</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="descuento-tab" data-bs-toggle="tab" href="#descuento" role="tab" aria-controls="descuento" aria-selected="false">Descuento</a>
+            </li>
+          </ul>
+        </div>
+        <div class="card-body">
+          <div class="tab-content" id="myTabContent">
+            <!-- Resumen de Compra -->
+            <div class="tab-pane fade show active" id="resumen" role="tabpanel" aria-labelledby="resumen-tab">
+              <h5 class="card-title">Resumen de Compra</h5>
+              <p class="d-flex justify-content-between">
+                <span>Subtotal</span>
+                <span>{{ obtenerSubtotal() | currency }}</span>
+              </p>
+              <p class="d-flex justify-content-between">
+                <span>Ahorros</span>
+                <span class="text-green">- {{ obtenerAhorros() | currency }}</span>
+              </p>
+              <h5 class="d-flex justify-content-between">
+                <span>Total a Pagar</span>
+                <span>{{ obtenerTotal() | currency }}</span>
+              </h5>
+              <button class="btn btn-primary w-100 mt-3" data-bs-toggle="modal" data-bs-target="#paymentModal">Continuar</button>
+            </div>
+
+            <!-- Código de Descuento -->
+            <div class="tab-pane fade" id="descuento" role="tabpanel" aria-labelledby="descuento-tab">
+              <h5 class="card-title">Código de Descuento</h5>
+              <label for="codigoDescuento">Código de Descuento:</label>
+              <input type="text" [(ngModel)]="codigoDescuento" id="codigoDescuento" class="form-control" placeholder="Ingresa el código de descuento" />
+              <button (click)="aplicarCodigoDescuento()" class="btn btn-secondary w-100 mt-2">Aplicar Código</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-15 mb-3 d-flex justify-content-center">
+  <div class="card h-100">
+    <div class="card-body">
+      <div class="productos-promocion">
+        <h2>Productos en Promoción el dia</h2>
+
+        <div *ngIf="productosPorCategoria | keyvalue; else noProductosPromocion">
+          <div *ngFor="let categoria of productosPorCategoria | keyvalue" class="categoria">
+            <h3 class="categoria-titulo">{{ categoria.key }}</h3>
+            <div class="productos-lista">
+              <div *ngFor="let producto of categoria.value" class="producto-card">
+                <img [src]="producto.ImagenURL" alt="{{ producto.Nombre }}" class="producto-imagen" />
+                <div class="producto-detalles">
+                  <h4 class="producto-nombre">{{ producto.Nombre }}</h4>
+                  <p class="producto-precio-original">Precio: <span>${{ producto.Precio }}</span></p>
+                  <p class="producto-precio-descuento">
+                    Precio con descuento: <span>${{ producto.PrecioConDescuento }}</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Aquí iría tu else para cuando no hay productos -->
+        <ng-template #noProductosPromocion>
+          <p>No hay productos en promoción.</p>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+ <!-- Modal de Selección de Pago -->
+ <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="paymentModalLabel">Selecciona Método de Pago</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Por favor selecciona tu método de pago:</p>
+        <div class="d-grid gap-2">
+          <div #paypal></div>
+          <button class="btn btn-secondary" (click)="pagarEnEfectivo()">Pago en Efectivo</button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para la factura -->
+<div class="modal" id="invoiceModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">¿Desea generar una factura?</h5>
+        <button type="button" class="btn-close" (click)="cerrarModalFactura()"></button>
+      </div>
+      <div class="modal-body">
+        <!-- <button type="button" class="btn btn-primary" (click)="generarFacturaCompra()">Generar factura</button> -->
+        <button type="button" class="btn btn-secondary" (click)="solicitarCorreoCliente()">Generar solo ticket</button>
+        
+        <div *ngIf="mostrarCampoCorreo">
+          <p>Ingresa tu correo para recibir el ticket:</p>
+          <input type="email" [(ngModel)]="correoCliente" placeholder="Correo electrónico" required />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="cerrarModalFactura()">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="enviarCorreoCliente()" *ngIf="mostrarCampoCorreo">Enviar Ticket</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
