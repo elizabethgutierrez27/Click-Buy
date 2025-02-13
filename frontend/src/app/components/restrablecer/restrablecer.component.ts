@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { UsuarioService } from '../../services/usuario.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-restrablecer',
@@ -13,27 +14,25 @@ import { HttpClientModule } from '@angular/common/http';
   providers: [UsuarioService]
 })
 export class RestrablecerComponent {
-  forgotPasswordForm: FormGroup;
+  resetForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService) {
-    this.forgotPasswordForm = this.formBuilder.group({
+  constructor(private fb: FormBuilder, private authService: AuthService) {
+    this.resetForm = this.fb.group({
       correo: ['', [Validators.required, Validators.email]]
     });
   }
 
-  onResetPassword() {
-    if (this.forgotPasswordForm.valid) {
-      const { correo } = this.forgotPasswordForm.value;
-      this.usuarioService.resetPassword(correo).subscribe({
-        next: (response) => {
-          console.log('Solicitud de restablecimiento de contraseña enviada:', response);
+  onSubmit() {
+    if (this.resetForm.valid) {
+      const correo = this.resetForm.value.correo;
+      this.authService.requestPasswordReset(correo).subscribe({
+        next: () => {
+          alert('Se ha enviado un correo para restablecer tu contraseña.');
         },
         error: (error) => {
-          console.error('Error al enviar solicitud de restablecimiento:', error);
+          alert('Error al enviar el correo: ' + error.error.message);
         }
       });
     }
   }
-
-  
 }

@@ -1,53 +1,89 @@
-<section class="vh-100 d-flex flex-column">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+  <!-- Navbar de navegación -->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #04092cda;">
+    <div class="container-fluid" style="background-color: #04092cda;">
+      <a class="navbar-brand" href="#">
+        <img src="assets/Logo.jpg" alt="logo" width="80" height="80" class="d-inline-block align-top" style="margin-right: 0px;">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link active custom-font" aria-current="page" href="#">Click&Buy</a>
+          </li>
+        </ul>
+        <a href="login" style="cursor: pointer; color: white; font-size: 1.5rem; padding: 15px;">
+          <i class="fas fa-user"></i>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Migas de Pan -->
+  <div class="container mt-3">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Restablecer Contraseña</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="wrapper">
     <div class="container-fluid h-custom flex-grow-1">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <!-- Columna para la Imagen -->
         <div class="col-md-9 col-lg-6 col-xl-5">
-          <img src="assets/SUPERAMA.png" class="img-fluid" alt="Sample image" />
+          <img src="assets/Logo.jpg" class="img-fluid" alt="Sample image" />
         </div>
         <!-- Columna para el Formulario de Restablecimiento de Contraseña -->
         <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-          <form [formGroup]="forgotPasswordForm" (ngSubmit)="onResetPassword()">
-            <h2 class="mb-4">Restablece tu Contraseña</h2>
-  
-            <!-- Correo -->
+          <form [formGroup]="resetForm" (ngSubmit)="onSubmit()">
             <div class="form-outline mb-4">
-              <input
-                type="email"
-                id="correo"
-                formControlName="correo"
-                class="form-control form-control-lg"
-                placeholder="Correo electrónico"
-              />
+              <input type="email" id="correo" formControlName="correo" class="form-control form-control-lg"
+                     placeholder="Ingresa tu correo electrónico" />
               <label class="form-label" for="correo">Correo</label>
-              <div *ngIf="forgotPasswordForm.get('correo')?.invalid && forgotPasswordForm.get('correo')?.touched" class="text-danger">
-                El correo es requerido.
-              </div>
             </div>
-  
-            <!-- Botón de Enviar -->
-            <div class="text-center text-lg-start mt-4 pt-2">
-              <button type="submit" class="btn btn-primary btn-lg" [disabled]="forgotPasswordForm.invalid"
-                      style="padding-left: 2.5rem; padding-right: 2.5rem;">Enviar</button>
-            </div>
+            <button type="submit" class="btn btn-primary btn-lg" [disabled]="resetForm.invalid">
+              Enviar correo de recuperación
+            </button>
           </form>
         </div>
       </div>
     </div>
     
-    <!-- Pie de página -->
-    <footer class="footer mt-auto bg-primary text-white py-4 px-4 px-xl-5">
-      <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between">
-        <div class="mb-3 mb-md-0">
-          Copyright © 2024. Todos los derechos reservados.
-        </div>
-        <div>
-          <a href="#!" class="text-white me-4"><i class="fab fa-facebook-f"></i></a>
-          <a href="#!" class="text-white me-4"><i class="fab fa-twitter"></i></a>
-          <a href="#!" class="text-white me-4"><i class="fab fa-google"></i></a>
-          <a href="#!" class="text-white"><i class="fab fa-linkedin-in"></i></a>
-        </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container d-flex flex-column flex-md-row text-center text-md-start justify-content-between">
+      <div class="text-white">
+        Copyright © 2024. Todos los derechos reservados.
       </div>
-    </footer>
-  </section>
+      <div>
+        <a href="#!" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+        <a href="#!" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+        <a href="#!" class="text-white me-3"><i class="fab fa-google"></i></a>
+        <a href="#!" class="text-white"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </footer>
+  
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  </body>
+  </html>
+  
   

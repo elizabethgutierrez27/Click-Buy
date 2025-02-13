@@ -2,22 +2,35 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs'; 
 import { catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private apiUrl = 'http://localhost:3000/usuario'; 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
-  login(Correo: string, Contrasena: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, { Correo, Contrasena }).pipe(
-        catchError(err => {
-            // Manejar el error
-            console.error('Error en el inicio de sesión', err);
-            return throwError(err);
-        })
-    );
-}
+  login(correo: string, contrasena: string) {
+    return this.http.post(`${this.apiUrl}/login`, { Correo: correo, Contrasena: contrasena });
+  }
+
+  requestPasswordReset(correo: string) {
+    return this.http.post(`${this.apiUrl}/request-password-reset`, { Correo: correo });
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+  }
+
+  isAuthenticated(): boolean {
+    return !!localStorage.getItem('token');
+  }
+
+
+  register(nombre: string, correo: string, contrasena: string, rol: string) {
+    return this.http.post(`${this.apiUrl}/registro`, { Nombre: nombre, Correo: correo, Contrasena: contrasena, Rol: rol });
+  }
 
 }

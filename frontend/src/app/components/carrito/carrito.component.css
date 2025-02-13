@@ -10,12 +10,22 @@
     font-size: 1.5rem;
     font-family: 'Lobster', cursive;
   }
+
+  /* Footer fijo en la parte inferior */
+.footer {
+  width: 100%;
+  background-color: #04092cda;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: auto;
+}
   
 body {
     font-family: 'Roboto', sans-serif;
   }
   .navbar {
-    background-color: #006f3d;
+    background-color: #86b8a1;
   }
   .navbar-brand img {
     width: 80px;
