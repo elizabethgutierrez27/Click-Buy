@@ -3,6 +3,11 @@
     margin: 0 auto;
   }
 
+  .nav-link.active.custom-font {
+    color: #000000 !important;
+  }
+  
+
   nav {
     margin: 0;
     padding: 0;
