@@ -1,130 +1,193 @@
+/* Estilos generales */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Hero Section */
 .hero {
-    background: url('https://img.freepik.com/foto-gratis/primer-plano-lista-compras_329181-14934.jpg?t=st=1739307354~exp=1739310954~hmac=cd70965499d4d6b99db431280e05613608698cd4694631092663532e31563702&w=740') center/cover no-repeat;
-    color: #ffffff;
-    text-align: center;
-    padding: 8rem 2rem;
-    .hero-content {
-      max-width: 800px;
-      margin: 0 auto;
-      h1 {
-        font-size: 3rem;
-        margin-bottom: 1rem;
-      }
-      p {
-        font-size: 1.2rem;
-        margin-bottom: 2rem;
-      }
-      .btn-primary {
-        background-color: #004085;
-        color: #ffffff;
-        padding: 0.75rem 1.5rem;
-        border: none;
-        text-decoration: none;
-        font-size: 1rem;
-        cursor: pointer;
-      }
-    }
-  }
-  
-  .services {
-    padding: 4rem 2rem;
-    text-align: center;
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-    }
-    .service-cards {
-      display: flex;
-      justify-content: space-around;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      .service-card {
-        background-color: #f8f9fa;
-        padding: 1.5rem;
-        border-radius: 8px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        width: 300px;
-        h3 {
-          font-size: 1.5rem;
-          margin-bottom: 1rem;
-        }
-        p {
-          font-size: 1rem;
-          color: #6c757d;
-        }
-      }
-    }
-  }
-  
-  .portfolio-preview {
-    padding: 4rem 2rem;
-    text-align: center;
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-    }
-    .portfolio-gallery {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      .project-card {
-        img {
-          width: 300px;
-          height: 200px;
-          object-fit: cover;
-          border-radius: 8px;
-        }
-        h3 {
-          margin-top: 1rem;
-          font-size: 1.2rem;
-          color: #495057;
-        }
-      }
-    }
-    .btn-secondary {
-      margin-top: 2rem;
-      background-color: #575883;
-      color: #ffffff;
-      padding: 0.75rem 1.5rem;
-      border: none;
-      text-decoration: none;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-  }
-  
-  .contact {
-    padding: 4rem 2rem;
-    background-color: #f8f9fa;
-    text-align: center;
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-    p {
-      margin-bottom: 2rem;
-      font-size: 1.2rem;
-    }
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      input, textarea {
-        width: 100%;
-        max-width: 500px;
-        padding: 0.75rem;
-        border: 1px solid #ced4da;
-        border-radius: 4px;
-      }
-      button {
-        background-color: #004085;
-        color: #ffffff;
-        padding: 0.75rem 1.5rem;
-        border: none;
-        font-size: 1rem;
-        cursor: pointer;
-      }
-    }
-  }
+  background: url('https://img.freepik.com/foto-gratis/primer-plano-lista-compras_329181-14934.jpg?t=st=1739307354~exp=1739310954~hmac=cd70965499d4d6b99db431280e05613608698cd4694631092663532e31563702&w=740') center/cover no-repeat;
+  color: #ffffff;
+  text-align: center;
+  padding: 6rem 2rem;
+  position: relative;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.btn-primary {
+  background-color: #ff6f61;
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #e65a50;
+}
+
+/* Services Section */
+.services {
+  padding: 4rem 2rem;
+  text-align: center;
+  background-color: #f9f9f9;
+}
+
+.services h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #004085;
+}
+
+.service-cards {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.service-card {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.service-card img {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 1rem;
+}
+
+.service-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #004085;
+}
+
+.service-card p {
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Contact Section */
+.contact {
+  padding: 4rem 2rem;
+  text-align: center;
+  background-color: #004085;
+  color: #ffffff;
+}
+
+.contact h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.contact p {
+  margin-bottom: 2rem;
+  font-size: 1.25rem;
+}
+
+.contact form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.contact input, .contact textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.nav-link.active.custom-font {
+  color: white !important;
+}
+
+.contact button {
+  background-color: #004085;
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contact button:hover {
+  background-color: #004085;
+}
+
+/* Footer */
+.footer {
+  padding: 2rem;
+  text-align: center;
+  background-color: #333;
+  color: #ffffff;
+}
+
+.footer .social-links {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.footer .social-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.footer .social-links a:hover {
+  text-decoration: underline;
+}
