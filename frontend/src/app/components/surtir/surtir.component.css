@@ -234,3 +234,13 @@ html, body {
   .border-success { border-color: #28a745 !important; }
   .product-card { transition: box-shadow 0.3s; }
   .product-card:hover { box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); }
+
+  .footer {
+    width: 100%;
+    background-color: #04092cda;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: auto;
+  }
+  

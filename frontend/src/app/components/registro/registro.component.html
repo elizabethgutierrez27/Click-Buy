@@ -1,80 +1,116 @@
-<section class="vh-100">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+  <!-- Navbar de navegación -->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #04092cda;">
+    <div class="container-fluid" style="background-color: #04092cda;">
+      <a class="navbar-brand" href="#">
+        <img src="assets/Logo.jpg" alt="logo" width="80" height="80" class="d-inline-block align-top" style="margin-right: 0px;">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link active custom-font" aria-current="page" href="#">Click&Buy</a>
+          </li>
+        </ul>
+        <a href="login" style="cursor: pointer; color: white; font-size: 1.5rem; padding: 15px;">
+          <i class="fas fa-user"></i>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Migas de Pan -->
+  <div class="container mt-3">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Registro</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="wrapper">
   <div class="container-fluid h-custom">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <!-- Columna para la Imagen -->
       <div class="col-md-9 col-lg-6 col-xl-5">
-        <img src="assets/SUPERAMA_Logo.png" class="img-fluid" alt="Sample image" />
+        <img src="assets/Logo.jpg" class="img-fluid" alt="Sample image" />
       </div>
       <!-- Columna para el Formulario de Registro -->
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-        <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
-          <h2 class="mb-4">Regístrate</h2>
-
-          <!-- Nombre -->
-          <div class="form-outline mb-4">
-            <input
-              type="text"
-              id="Nombre"
-              formControlName="Nombre"
-              class="form-control form-control-lg"
-              placeholder="Nombre completo"
-            />
-            <label class="form-label" for="Nombre">Nombre</label>
-            <div *ngIf="registerForm.get('Nombre')?.invalid && registerForm.get('Nombre')?.touched" class="text-danger">
+        <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" formControlName="nombre" class="form-control" placeholder="Ingresa tu nombre">
+            <div *ngIf="registroForm.get('nombre')?.invalid && registroForm.get('nombre')?.touched" class="text-danger">
               El nombre es requerido.
             </div>
           </div>
-
-          <!-- Correo -->
-          <div class="form-outline mb-4">
-            <input
-              type="email"
-              id="Correo"
-              formControlName="Correo"
-              class="form-control form-control-lg"
-              placeholder="Correo electrónico"
-            />
-            <label class="form-label" for="Correo">Correo</label>
-            <div *ngIf="registerForm.get('Correo')?.invalid && registerForm.get('Correo')?.touched" class="text-danger">
-              El correo es requerido.
+        
+          <div class="form-group">
+            <label for="correo">Correo electrónico</label>
+            <input type="email" id="correo" formControlName="correo" class="form-control" placeholder="Ingresa tu correo">
+            <div *ngIf="registroForm.get('correo')?.invalid && registroForm.get('correo')?.touched" class="text-danger">
+              Por favor, ingresa un correo válido.
             </div>
           </div>
-
-          <!-- Contraseña -->
-          <div class="form-outline mb-4">
-            <input
-              type="password"
-              id="Contrasena"
-              formControlName="Contrasena"
-              class="form-control form-control-lg"
-              placeholder="Contraseña"
-            />
-            <label class="form-label" for="contrasena">Contraseña</label>
-            <div *ngIf="registerForm.get('Contrasena')?.invalid && registerForm.get('Contrasena')?.touched" class="text-danger">
-              La contraseña es requerida.
+        
+          <div class="form-group">
+            <label for="contrasena">Contraseña</label>
+            <input type="password" id="contrasena" formControlName="contrasena" class="form-control" placeholder="Ingresa tu contraseña">
+            <div *ngIf="registroForm.get('contrasena')?.invalid && registroForm.get('contrasena')?.touched" class="text-danger">
+              La contraseña debe tener al menos 6 caracteres.
             </div>
           </div>
-
-          <!-- Botón de Registro -->
-          <div class="text-center text-lg-start mt-4 pt-2">
-            <button type="submit" class="btn btn-primary btn-lg" [disabled]="registerForm.invalid"
-                    style="padding-left: 2.5rem; padding-right: 2.5rem;">Registrarse</button>
-                    <p class="small fw-bold mt-2 pt-1 mb-0">¿Ya tienes una cuenta? <a href="login" class="link-danger">Iniciar sesion</a></p>
+        
+          <div class="form-group">
+            <label for="rol">Rol</label>
+            <select id="rol" formControlName="rol" class="form-control">
+              <option value="Usuario">Usuario</option>
+              <option value="Administrador">Administrador</option>
+            </select>
           </div>
+        
+          <button type="submit" class="btn btn-primary" [disabled]="registroForm.invalid">Registrarse</button>
         </form>
+        
+        <p class="mt-3">
+          ¿Ya tienes una cuenta? <a href="/login">Inicia sesión</a>
+        </p>
       </div>
     </div>
   </div>
-  <!-- Pie de página -->
-  <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
-    <div class="text-white mb-3 mb-md-0">
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container d-flex flex-column flex-md-row text-center text-md-start justify-content-between">
+    <div class="text-white">
       Copyright © 2024. Todos los derechos reservados.
     </div>
     <div>
-      <a href="#!" class="text-white me-4"><i class="fab fa-facebook-f"></i></a>
-      <a href="#!" class="text-white me-4"><i class="fab fa-twitter"></i></a>
-      <a href="#!" class="text-white me-4"><i class="fab fa-google"></i></a>
+      <a href="#!" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+      <a href="#!" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+      <a href="#!" class="text-white me-3"><i class="fab fa-google"></i></a>
       <a href="#!" class="text-white"><i class="fab fa-linkedin-in"></i></a>
     </div>
   </div>
-</section>
+</footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+

@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { UsuarioService } from '../../services/usuario.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -15,29 +16,31 @@ import { Router } from '@angular/router';
   providers: [UsuarioService]
 })
 export class RegistroComponent {
-  registerForm: FormGroup;
+  registroForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService, private router: Router) {
-    this.registerForm = this.formBuilder.group({
-      Nombre: ['', Validators.required],
-      Correo: ['', [Validators.required, Validators.email]],
-      Contrasena: ['', Validators.required],
-      Rol: ['Encargado']
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
+    this.registroForm = this.fb.group({
+      nombre: ['', Validators.required],
+      correo: ['', [Validators.required, Validators.email]],
+      contrasena: ['', [Validators.required, Validators.minLength(6)]],
+      rol: ['Usuario', Validators.required] // Valor por defecto: 'Usuario'
     });
   }
 
-  onRegister() {
-    if (this.registerForm.valid) {
-      const usuarioData = this.registerForm.value;
-      this.usuarioService.crearUsuario(usuarioData).subscribe({
+  onSubmit() {
+    if (this.registroForm.valid) {
+      const { nombre, correo, contrasena, rol } = this.registroForm.value;
+      this.authService.register(nombre, correo, contrasena, rol).subscribe({
         next: (response) => {
-          console.log('Usuario registrado exitosamente:', response);
+          alert('Registro exitoso. Por favor, inicia sesión.');
           this.router.navigate(['/login']);
-          alert('Usuario registrado con éxito');
         },
         error: (error) => {
-          console.error('Error al registrar el usuario:', error.message, error.status, error.error);
-          alert('Error en el registro de usuario, por favor verifica tus credenciales');
+          alert('Error en el registro: ' + error.error.message);
         }
       });
     }
