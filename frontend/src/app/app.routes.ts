@@ -14,7 +14,8 @@ import { ProductosPromocionComponent } from './productos-promocion/productos-pro
 import { InicioComponent } from './components/inicio/inicio.component';
 
 export const routes: Routes = [
-    {path: '', component: UserComponent},
+    {path: '', component: InicioComponent},
+    {path:'users', component:UserComponent},
     {path:'login',component:LoginComponent},
     {path:'carrito/:codigoBarras', component: CarritoComponent},
     {path:'carrito',component:CarritoComponent},
@@ -26,6 +27,5 @@ export const routes: Routes = [
     {path:'consultas', component:ConsultasComponent},
     {path:'surtir', component:SurtirComponent},
     {path:'detalle-producto/:id', component:DetallesProductoComponent},
-    {path:'promocion', component:ProductosPromocionComponent},
-    {path:'inicio', component:InicioComponent}
+    {path:'promocion', component:ProductosPromocionComponent}
 ];

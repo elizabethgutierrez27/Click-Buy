@@ -1,6 +1,17 @@
 html, body {
   height: 100%; /* Asegura que el body ocupe el 100% de la altura */
 }
+
+.footer {
+  width: 100%;
+  background-color: #04092cda;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: auto;
+}
+
+
 body {
   display: flex;
   flex-direction: column; /* Coloca los elementos de forma vertical */

@@ -35,7 +35,7 @@ export class LoginComponent {
       this.authService.login(correo, contrasena).subscribe({
         next: (response: any) => {
           localStorage.setItem('token', response.token);
-          this.router.navigate(['/']);
+          this.router.navigate(['users']);
         },
         error: (error) => {
           alert('Error en el inicio de sesión: ' + error.error.message);

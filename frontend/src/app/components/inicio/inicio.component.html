@@ -1,29 +1,70 @@
-<header class="hero">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Click & Buy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #19246dda;">
+  <div class="container-fluid" style="background-color: #04092cda;">
+      <a class="navbar-brand" href="#">
+          <img src="assets/logo.png" alt="logo" width="80" height="80" class="d-inline-block align-top">
+      </a>
+      <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                  <a class="nav-link active custom-font" aria-current="page" href="#">Click & Buy</a>
+              </li>
+          </ul>
+          <a href="login" class="text-white" style="font-size: 1.5rem; padding: 15px;">
+              <i class="fas fa-user"></i>
+          </a>
+      </div>
+  </div>
+</nav>
+<!-- Migas de Pan -->
+<div class="container mt-3">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Inicio /</li>
+    </ol>
+  </nav>
+</div>
+
+<body>
+  <!-- Hero Section -->
+  <header class="hero">
     <div class="hero-content">
       <h1>Click & Buy</h1>
       <p>La forma más rápida y sencilla de hacer tus compras con tecnología de escaneo inteligente.</p>
-      <a href="/productos" class="btn-primary">Ver Productos</a>
+      <a href="producto" class="btn-primary">Ver Productos</a>
     </div>
   </header>
-  
+
+  <!-- Services Section -->
   <section class="services">
     <h2>¿Cómo Funciona?</h2>
     <div class="service-cards">
       <div class="service-card">
+        <img src="https://img.freepik.com/foto-gratis/pago-tecnologia-facil-e-inalambrico_23-2149105166.jpg?t=st=1739480460~exp=1739484060~hmac=83dcead9099627b95c15d9910949ea0318eca8131562ae505e14bc8803765e57&w=360" alt="Escaneo Rápido">
         <h3>Escaneo Rápido</h3>
         <p>Escanea tus productos con tu dispositivo móvil en segundos.</p>
       </div>
       <div class="service-card">
+        <img src="https://img.freepik.com/foto-gratis/mujer-vestida-rojo-telefono-movil-manos-pagando-tarjeta-credito-linea_176532-8069.jpg?t=st=1739480536~exp=1739484136~hmac=143175e6067d3c72e37e3f2859ca1b0138765cfc92d4cbd97607cb73efc82122&w=740" alt="Pago Seguro">
         <h3>Pago Seguro</h3>
         <p>Realiza pagos rápidos y seguros desde nuestra plataforma.</p>
       </div>
       <div class="service-card">
+        <img src="https://img.freepik.com/foto-gratis/feliz-mujer-sonriente-camisa-rosa-sofa-casa-coloridas-bolsas-compra-tarjeta-credito-pagando-linea-computadora-portatil_285396-9238.jpg?t=st=1739480816~exp=1739484416~hmac=14c5d02914c7ba3b313fd866506ecaf9aa917056b21d9362084644af4411582c&w=740" alt="Promociones Exclusivas">
         <h3>Promociones Exclusivas</h3>
         <p>Aprovecha descuentos especiales solo disponibles en la app.</p>
       </div>
     </div>
   </section>
-  
+
+  <!-- Contact Section -->
   <section class="contact">
     <h2>Contáctanos</h2>
     <p>¿Tienes dudas o necesitas soporte? ¡Estamos aquí para ayudarte!</p>
@@ -31,7 +72,18 @@
       <input type="text" placeholder="Nombre" required />
       <input type="email" placeholder="Correo Electrónico" required />
       <textarea placeholder="Escribe tu mensaje aquí..." required></textarea>
-      <button type="submit" class="btn-primary">Enviar</button>
+      <button type="submit" class="btn-primary">Enviar Mensaje</button>
     </form>
   </section>
-  
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2023 Click & Buy. Todos los derechos reservados.</p>
+    <ul class="social-links">
+      <li><a href="https://facebook.com">Facebook</a></li>
+      <li><a href="https://twitter.com">Twitter</a></li>
+      <li><a href="https://instagram.com">Instagram</a></li>
+    </ul>
+  </footer>
+</body>
+</html>
