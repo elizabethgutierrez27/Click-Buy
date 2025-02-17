@@ -3,6 +3,8 @@ import pool from "../../database";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
+import axios from 'axios'; 
+
 
 // Claves secretas
 const JWT_SECRET = 'miClaveSecretaSuperSegura123';
@@ -47,9 +49,20 @@ class UsuariosController {
     }
 
     public async login(req: Request, resp: Response): Promise<void> {
-        const { Correo, Contrasena } = req.body;
+        const { Correo, Contrasena, 'g-recaptcha-response': captchaResponse } = req.body;
+
+        // Verificar el CAPTCHA primero
+        const verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=6LccFtoqAAAAABd2gjTQdP569F8wfFUIY3VKQW85&response=${captchaResponse}`;
 
         try {
+            // Verificar el CAPTCHA con Google
+            const captchaVerification = await axios.post(verificationUrl);
+            if (!captchaVerification.data.success) {
+                resp.status(400).json({ message: 'Error: No se pudo verificar el CAPTCHA.' });
+                return;
+            }
+
+            // Si el CAPTCHA es válido, continuar con el inicio de sesión
             const result = await pool.query('SELECT * FROM Usuarios WHERE Correo = ?', [Correo]);
 
             if (result.length > 0) {
@@ -110,18 +123,35 @@ class UsuariosController {
         }
     }
 
+    public async verifyCaptcha(req: Request, res: Response): Promise<Response> {
+        const captchaResponse = req.body['g-recaptcha-response'];
+
+        if (!captchaResponse) {
+            return res.status(400).json({ message: 'Por favor, completa el CAPTCHA' });
+        }
+
+        try {
+            const response = await axios.post('https://www.google.com/recaptcha/api/siteverify', null, {
+                params: {
+                    secret: '6LccFtoqAAAAAMUUFKceJzzRQIri-zTvq7YMFaxf',
+                    response: captchaResponse,
+                },
+            });
+
+            if (response.data.success) {
+                return res.status(200).json({ message: 'Captcha válido' });
+            } else {
+                return res.status(400).json({ message: 'Captcha inválido' });
+            }
+        } catch (error) {
+            console.error('Error al verificar el CAPTCHA:', error);
+            return res.status(500).json({ message: 'Error en la verificación del CAPTCHA' });
+        }
+    }
+
     public async create(req: Request, resp: Response): Promise<void> {
         try {
-            const { Nombre, Correo, Contrasena, Rol } = req.body;
-    
-            console.log('Datos recibidos:', { Nombre, Correo, Contrasena, Rol });
-    
-            // Validar que todos los campos estén presentes
-            if (!Nombre || !Correo || !Contrasena || !Rol) {
-                resp.status(400).json({ message: 'Todos los campos son necesarios' });
-                return;
-            }
-    
+            const { Nombre, Correo, Contrasena, Rol} = req.body;
             // Verificar si el correo ya está registrado
             const [existingUser] = await pool.query('SELECT * FROM usuarios WHERE Correo = ?', [Correo]);
     

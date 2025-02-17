@@ -1,91 +1,52 @@
+/* Estilos generales */
 html, body {
   height: 100%; /* Asegura que el body ocupe el 100% de la altura */
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
 }
 
+body {
+  display: flex;
+  flex-direction: column; /* Coloca los elementos de forma vertical */
+}
+
+.container {
+  flex: 1; /* Permite que el contenedor crezca y ocupe el espacio disponible */
+  max-width: 1200px; /* Aumentar el ancho máximo para pantallas grandes */
+  padding: 0 15px; /* Añadir relleno al contenedor */
+  margin: 0 auto; /* Centrar el contenedor */
+}
+
+/* Footer */
 .footer {
   width: 100%;
   background-color: #04092cda;
   color: white;
   text-align: center;
   padding: 15px;
-  margin-top: auto;
+  margin-top: auto; /* Empuja el footer hacia abajo */
 }
 
-
-body {
-  display: flex;
-  flex-direction: column; /* Coloca los elementos de forma vertical */
-}
-.container {
-  flex: 1; /* Permite que el contenedor crezca y ocupe el espacio disponible */
-  max-width: 1200px; /* Aumentar el ancho máximo para pantallas grandes */
-  padding: 0 15px;   /* Añadir relleno al contenedor */
+.footer a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
 }
 
-h2 {
-  font-size: 2rem; /* Ajustar tamaño del título */
+.footer a:hover {
+  color: #ffc107; /* Cambia el color al pasar el mouse */
 }
 
-.product-card {
-  border-radius: 8px; /* Esquinas redondeadas para las tarjetas */
-  background-color: #f9f9f9; /* Fondo claro para las tarjetas */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave para el efecto hover */
+/* Navbar */
+.navbar {
+  background-color: #19246dda;
+  padding: 10px 0;
 }
 
-.product-card:hover {
-  transform: scale(1.05); /* Efecto de escalado al pasar el mouse */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra sutil al pasar el mouse */
-}
-
-.card-title {
-  font-size: 1.25rem; /* Tamaño de fuente ligeramente mayor para los nombres de los productos */
-  font-weight: 600; /* Fuente en negrita para los nombres de los productos */
-  color: #333; /* Color oscuro para el texto */
-}
-
-.card-text {
-  font-size: 1rem; /* Tamaño de fuente estándar para el texto de la tarjeta */
-}
-
-.text-muted {
-  color: #6c757d; /* Color atenuado de Bootstrap */
-}
-
-.btn {
-  font-size: 0.9rem; /* Tamaño de fuente consistente para botones */
-  font-weight: 500; /* Texto en negrita para los botones */
-}
-
-.btn-outline-primary {
-  color: #007bff; /* Color primario de Bootstrap */
-  border-color: #007bff; /* Coincidir el borde con el color primario */
-}
-
-.btn-outline-primary:hover {
-  background-color: #007bff; /* Cambiar fondo al pasar el mouse */
-  color: white; /* Texto blanco al pasar el mouse */
-}
-
-.btn-outline-danger {
-  color: #dc3545; /* Color de peligro de Bootstrap */
-  border-color: #dc3545; /* Coincidir el borde con el color de peligro */
-}
-
-.btn-outline-danger:hover {
-  background-color: #dc3545; /* Cambiar fondo al pasar el mouse */
-  color: white; /* Texto blanco al pasar el mouse */
-}
-
-/* Consultas de medios para la responsividad */
-@media (max-width: 768px) {
-  .product-card {
-      margin-bottom: 15px; /* Reducir el margen en pantallas más pequeñas */
-  }
-}
-
-nav {
-  margin: 0;
-  padding: 0;
+.navbar-brand img {
+  width: 80px;
+  height: 80px;
 }
 
 .nav-link.active {
@@ -94,92 +55,164 @@ nav {
   font-family: 'Lobster', cursive;
 }
 
-body {
-  font-family: 'Roboto', sans-serif;
-}
-
-.navbar {
-  background-color: #19246dda; /* Color azul fuerte */
-}
-
-.navbar-brand img {
-  width: 80px;
-  height: 80px;
-}
-
-/* Sección de inventario */
-.card {
-  border: none;
+/* Tarjetas de productos */
+.product-card {
+  border-radius: 8px;
+  background-color: #f9f9f9;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
 }
 
-.card:hover {
+.product-card:hover {
   transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 15px;
 }
 
 .card-title {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
 }
 
+.card-text {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.alert {
+  padding: 8px;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+  border-color: #c3e6cb;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  border-color: #f5c6cb;
+}
+
+.alert-warning {
+  background-color: #fff3cd;
+  color: #856404;
+  border-color: #ffeeba;
+}
+
+/* Botones */
 .btn {
   font-size: 0.9rem;
   font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 4px;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.btn-outline-primary {
+  color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-outline-primary:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-outline-danger {
+  color: #dc3545;
+  border-color: #dc3545;
+}
+
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
 .btn-warning {
-  background-color: #ffc107; /* Color de botón de advertencia */
+  background-color: #ffc107;
   border: none;
+  color: #000;
 }
 
 .btn-warning:hover {
   background-color: #e67e22;
-}
-
-.btn-danger {
-  background-color: #dc3545; /* Color de botón de peligro */
-  border: none;
-}
-
-.btn-danger:hover {
-  background-color: #c0392b;
+  color: #000;
 }
 
 .btn-success {
-  background-color: #28a745; /* Color de botón de éxito */
+  background-color: #28a745;
   border: none;
+  color: white;
+}
+
+.btn-success:hover {
+  background-color: #218838;
 }
 
 /* Modal */
 .modal-header {
-  background-color: #007bff; /* Color azul fuerte */
+  background-color: #007bff;
   color: white;
+  border-bottom: 1px solid #ddd;
+}
+
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.modal-body {
+  padding: 20px;
 }
 
 .form-label {
   font-weight: 600;
   color: #34495e;
+  margin-bottom: 5px;
 }
 
-.btn-primary {
-  background-color: #2980b9; /* Color del botón primario */
-  border: none;
+.form-control {
+  margin-bottom: 15px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  padding: 8px;
 }
 
-.btn-primary:hover {
-  background-color: #3498db;
-}
+/* Responsividad */
+@media (max-width: 768px) {
+  .product-card {
+      margin-bottom: 15px;
+  }
 
-.modal-header {
-  border-bottom: 1px solid #ddd;
-}
+  .navbar-brand img {
+      width: 60px;
+      height: 60px;
+  }
 
-.modal-body {
-  border-radius: 0 0 1rem 1rem;
-}
+  .nav-link.active {
+      font-size: 1.2rem;
+  }
 
-footer {
-  height: 60px; /* Altura fija para el footer */
+  .btn {
+      font-size: 0.8rem;
+      padding: 6px 10px;
+  }
 }
