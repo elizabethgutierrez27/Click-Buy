@@ -12,6 +12,9 @@ import { SurtirComponent } from './components/surtir/surtir.component';
 import { DetallesProductoComponent } from './components/detalles-producto/detalles-producto.component';
 import { ProductosPromocionComponent } from './productos-promocion/productos-promocion.component';
 import { InicioComponent } from './components/inicio/inicio.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { MapaSitioComponent } from './components/mapa-sitio/mapa-sitio.component';
+import { TerminosypriComponent } from './components/terminosypri/terminosypri.component';
 
 export const routes: Routes = [
     {path: '', component: InicioComponent},
@@ -27,5 +30,8 @@ export const routes: Routes = [
     {path:'consultas', component:ConsultasComponent},
     {path:'surtir', component:SurtirComponent},
     {path:'detalle-producto/:id', component:DetallesProductoComponent},
-    {path:'promocion', component:ProductosPromocionComponent}
+    {path:'promocion', component:ProductosPromocionComponent},
+    {path: 'navbar', component:NavbarComponent},
+    {path: 'mapa', component:MapaSitioComponent},
+    {path: 'terminosypri', component:TerminosypriComponent}
 ];
