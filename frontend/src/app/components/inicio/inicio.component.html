@@ -17,6 +17,13 @@
                   <a class="nav-link active custom-font" aria-current="page" href="#">Click & Buy</a>
               </li>
           </ul>
+
+          <form class="d-flex" role="search" (submit)="searchContent(); $event.preventDefault()">
+            <input #searchInput class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
+            <button class="btn btn-outline-light" type="button" (click)="searchContent()">🔍</button>
+          </form>
+          
+
           <a href="login" class="text-white" style="font-size: 1.5rem; padding: 15px;">
               <i class="fas fa-user"></i>
           </a>
@@ -85,5 +92,11 @@
       <li><a href="https://instagram.com">Instagram</a></li>
     </ul>
   </footer>
+
+   <!-- Botón para ir abajo -->
+   <button *ngIf="showScrollDown" class="scroll-btn down" (click)="scrollToBottom()">↓</button>
+
+   <!-- Botón para ir arriba -->
+   <button *ngIf="showScrollUp" class="scroll-btn up" (click)="scrollToTop()">↑</button>
 </body>
 </html>
