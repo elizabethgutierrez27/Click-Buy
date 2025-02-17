@@ -3,76 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-      .border-danger { border-color: #dc3545 !important; }
-      .border-warning { border-color: #ffc107 !important; }
-      .border-success { border-color: #28a745 !important; }
-      .product-card { transition: box-shadow 0.3s; }
-      .product-card:hover { box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); }
-    </style>
     <title>Lista de Productos</title>
+    <!-- Enlaces a Bootstrap y Font Awesome -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Enlace al archivo CSS personalizado -->
+    <!-- Fuentes de Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
     <!-- Navegación -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #19246dda;">
-      <div class="container-fluid" style="background-color: #04092cda;">
-        <a class="navbar-brand" href="#">
-          <img src="assets/logo.png" alt="logo" width="80" height="80" class="d-inline-block align-top">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-              <a class="nav-link active custom-font" aria-current="page" href="#">Click&Buy</a>
-            </li>
-          </ul>
-          <div class="d-flex align-items-center">
-            <a style="cursor: pointer; color: white; font-size: 1.5rem; padding: 0 15px;">
-              <i class="fas fa-user" style="color: white;"></i>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="assets/logo.png" alt="logo" width="80" height="80" class="d-inline-block align-top">
             </a>
-          </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Click&Buy</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <a style="cursor: pointer; color: white; font-size: 1.5rem; padding: 0 15px;">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </div>
+            </div>
         </div>
-      </div>
     </nav>
 
-
-    
+    <!-- Contenido principal -->
     <div class="container mt-5">
-      <header class="d-flex justify-content-between align-items-center mb-4">
-          <h2 class="display-4">Lista de Productos</h2>
-          <div>
-            <button class="btn btn-primary" (click)="abrirModalAgregar()">Agregar Producto</button>
-            
-            <button class="btn btn-warning" (click)="irASurtirProductos()">Surtir Productos</button>
-          </div>
-      </header>
-      <script async src="https://cse.google.com/cse.js?cx=95b22fc4523ca4cec">
-      </script>
-      <div class="gcse-search"></div>
-  
-      <!-- Selector de Categoría y Buscador -->
-      <select (change)="onCategoriaChange($event)">
-        <option value="0">Todas las categorías</option>
-        <option *ngFor="let categoria of categorias" [value]="categoria.Id">{{ categoria.Nombre }}</option>
-      </select>
-      
-      <!-- Input para búsqueda -->
-      <input type="text" (input)="onBusquedaChange($event)" placeholder="Buscar productos..." />
-  
-      
+        <header class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="display-4">Lista de Productos</h2>
+            <div>
+                <button class="btn btn-primary" (click)="abrirModalAgregar()">Agregar Producto</button>
+                <button class="btn btn-warning" (click)="irASurtirProductos()">Surtir Productos</button>
+            </div>
+        </header>
 
+        <!-- Selector de Categoría y Buscador -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <select class="form-control" (change)="onCategoriaChange($event)">
+                    <option value="0">Todas las categorías</option>
+                    <option *ngFor="let categoria of categorias" [value]="categoria.Id">{{ categoria.Nombre }}</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <input type="text" class="form-control" (input)="onBusquedaChange($event)" placeholder="Buscar productos...">
+            </div>
+        </div>
 
-      <div class="container mt-5">
         <!-- Productos Disponibles -->
         <h2 class="text-success mt-4">Productos Disponibles</h2>
         <div class="row">
             <div *ngFor="let producto of productosDisponibles" class="col-lg-4 col-md-6 col-sm-12 mb-4">
                 <div class="card product-card shadow-sm border-success">
-                    <img [src]="producto.ImagenURL" class="card-img-top rounded-top" alt="{{ producto.Nombre }}" (error)="setDefaultImage($event)"  *ngIf="producto.Id !== undefined" (click)="verDetalleProducto(producto.Id)" >
+                    <img [src]="producto.ImagenURL" class="card-img-top rounded-top" alt="{{ producto.Nombre }}" (error)="setDefaultImage($event)" *ngIf="producto.Id !== undefined" (click)="verDetalleProducto(producto.Id)">
                     <div class="card-body">
                         <h5 class="card-title">{{ producto.Nombre }}</h5>
                         <p class="card-text">Categoría: {{ getCategoriaNombre(producto.CategoriaId) }}</p>
@@ -86,7 +78,7 @@
                 </div>
             </div>
         </div>
-    
+
         <!-- Productos Agotados -->
         <h2 class="text-danger mt-4">Productos Agotados</h2>
         <div class="row">
@@ -106,7 +98,7 @@
                 </div>
             </div>
         </div>
-    
+
         <!-- Productos Por Agotarse -->
         <h2 class="text-warning mt-4">Productos Por Agotarse</h2>
         <div class="row">
@@ -127,111 +119,23 @@
             </div>
         </div>
     </div>
-    
-      
-  
-      <!-- Modal para agregar productos -->
-      <div class="modal fade" id="agregarProductoModal" tabindex="-1" aria-labelledby="agregarProductoModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header bg-primary text-white">
-              <h5 class="modal-title" id="agregarProductoModalLabel">Agregar Producto</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="limpiarFormulario()">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form (ngSubmit)="agregarProducto()">
-                <div class="form-group">
-                  <label for="Nombre">Nombre</label>
-                  <input type="text" [(ngModel)]="productoSeleccionado.Nombre" name="nombre" required class="form-control" />
-                </div>
-                <div class="form-group">
-                  <label for="Precio">Precio</label>
-                  <input type="number" [(ngModel)]="productoSeleccionado.Precio" name="precio" required class="form-control" />
-                </div>
-                <div class="form-group">
-                  <label for="Cantidad">Cantidad</label>
-                  <input type="number" [(ngModel)]="productoSeleccionado.CantidadDisponible" name="CantidadDisponible" required class="form-control" />
-                </div>
-                
-                <div class="form-group">
-                  <label for="Categoria">Categoría</label>
-                  <select [(ngModel)]="productoSeleccionado.CategoriaId" name="Categoria" required class="form-control">
-                    <option *ngFor="let categoria of categorias" [value]="categoria.Id">{{ categoria.Nombre }}</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="CodigoQR">Código de Barras</label>
-                  <input type="text" [(ngModel)]="productoSeleccionado.CodigoBarras" name="codigoBarras" class="form-control" required />
-                </div>                
-                <div class="form-group">
-                  <label for="Imagen">URL de la Imagen</label>
-                  <input type="text" [(ngModel)]="productoSeleccionado.ImagenURL" name="Imagen" class="form-control" placeholder="Ingrese la URL de la imagen" />
-                </div>
-                <button type="submit" class="btn btn-success btn-block">Agregar</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <!-- Modal para editar productos -->
-      <div class="modal fade" id="editarProductoModal" tabindex="-1" aria-labelledby="editarProductoModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header bg-primary text-white">
-              <h5 class="modal-title" id="editarProductoModalLabel">Editar Producto</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="limpiarFormulario()">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form (ngSubmit)="actualizarProducto()">
-                <div class="form-group">
-                  <label for="Nombre">Nombre</label>
-                  <input type="text" [(ngModel)]="productoSeleccionado.Nombre" name="Nombre" required class="form-control" />
-                </div>
-                <div class="form-group">
-                  <label for="Precio">Precio</label>
-                  <input type="number" [(ngModel)]="productoSeleccionado.Precio" name="Precio" required class="form-control" />
-                </div>
-                <div class="form-group">
-                  <label for="Cantidad">Cantidad</label>
-                  <input type="number" [(ngModel)]="productoSeleccionado.CantidadDisponible" name="CantidadDisponible" required class="form-control" />
-                </div>
-                
-                <div class="form-group">
-                  <label for="Categoria">Categoría</label>
-                  <select [(ngModel)]="productoSeleccionado.CategoriaId" name="Categoria" required class="form-control">
-                    <option *ngFor="let categoria of categorias" [value]="categoria.Id">{{ categoria.Nombre }}</option>
-                  </select>
-                </div>
-                
-                <button type="submit" class="btn btn-success btn-block">Actualizar</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
+    <!-- Footer -->
     <footer class="footer">
-      <div class="container d-flex flex-column flex-md-row text-center text-md-start justify-content-between">
-        <div class="text-white">
-          Copyright © 2024. Todos los derechos reservados.
+        <div class="container d-flex flex-column flex-md-row text-center text-md-start justify-content-between">
+            <div class="text-white">
+                Copyright © 2024. Todos los derechos reservados.
+            </div>
+            <div>
+                <a href="#!" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                <a href="#!" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                <a href="#!" class="text-white me-3"><i class="fab fa-google"></i></a>
+                <a href="#!" class="text-white"><i class="fab fa-linkedin-in"></i></a>
+            </div>
         </div>
-        <div>
-          <a href="#!" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
-          <a href="#!" class="text-white me-3"><i class="fab fa-twitter"></i></a>
-          <a href="#!" class="text-white me-3"><i class="fab fa-google"></i></a>
-          <a href="#!" class="text-white"><i class="fab fa-linkedin-in"></i></a>
-        </div>
-      </div>
     </footer>
-    
-    
+
+    <!-- Scripts de Bootstrap y jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
