@@ -20,6 +20,10 @@
             <a href="promocion" class="text-white" style="font-size: 0.9rem; padding: 15px;">
                 <i class="fas fa-tags">Promociones</i>
             </a>
+            <form class="d-flex" role="search" (submit)="searchContent(); $event.preventDefault()">
+                <input #searchInput class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
+                <button class="btn btn-outline-light" type="button" (click)="searchContent()">🔍</button>
+              </form>
             <a href="login" class="text-white" style="font-size: 1.2rem; padding: 15px;">
                 <i class="fas fa-user"></i>
             </a>
