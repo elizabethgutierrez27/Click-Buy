@@ -17,6 +17,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  captchaResponse: string | null = null;
+
 
   constructor(
     private fb: FormBuilder,
