@@ -10,7 +10,7 @@ body {
 
 /* Hero Section */
 .hero {
-  background: url('https://img.freepik.com/foto-gratis/primer-plano-lista-compras_329181-14934.jpg?t=st=1739307354~exp=1739310954~hmac=cd70965499d4d6b99db431280e05613608698cd4694631092663532e31563702&w=740') center/cover no-repeat;
+  background: url('https://img.freepik.com/foto-gratis/mujer-encontro-producto-adecuado_329181-17368.jpg?t=st=1739834913~exp=1739838513~hmac=02868b0838827862a015b87d7edd02f8b4e26bb02973e132ec0e6fb7cb2c0646&w=740') center/cover no-repeat;
   color: #ffffff;
   text-align: center;
   padding: 6rem 2rem;
@@ -166,31 +166,6 @@ body {
   background-color: #004085;
 }
 
-/* Footer */
-.footer {
-  padding: 2rem;
-  text-align: center;
-  background-color: #333;
-  color: #ffffff;
-}
-
-.footer .social-links {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-}
-
-.footer .social-links a {
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 1rem;
-}
-
-.footer .social-links a:hover {
-  text-decoration: underline;
-}
 
 .nav-link.active {
   color: white !important;
