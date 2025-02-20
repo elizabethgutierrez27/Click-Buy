@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms'; // Importar FormsModule
 import { ActivatedRoute } from '@angular/router';
 import { BrowserMultiFormatReader } from '@zxing/browser';
@@ -36,6 +36,19 @@ export class CarritoComponent implements OnInit {
   categorias: Categoria[] = [];
   productosPorCategoria: { [categoria: string]: Producto[] } = {};
 
+  showScrollUp = false;
+  showScrollDown = true;
+  
+  @HostListener("window:scroll", [])
+    onScroll() {
+      const scrollY = window.scrollY;
+      const maxScroll = document.body.scrollHeight - window.innerHeight;
+      
+      this.showScrollUp = scrollY > 300;
+      this.showScrollDown = scrollY < maxScroll - 100;
+
+    }
+  @ViewChild('searchInput', { static: false }) searchInput!: ElementRef<HTMLInputElement>;
   @ViewChild('video') videoElement: ElementRef | undefined;
   @ViewChild('paypal', { static: true }) paypalElement!: ElementRef;
 
@@ -379,5 +392,15 @@ export class CarritoComponent implements OnInit {
         window.URL.revokeObjectURL(url); // Limpiar la URL creada
       });
     }
+
+    scrollToTop() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  
+    scrollToBottom() {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+    }
+
+    
   }
     

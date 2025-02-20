@@ -165,4 +165,33 @@ body {
     font-size: 1rem;
     color: #666;
   }
+
+  
+/* Botones de scroll */
+.scroll-btn {
+  position: fixed;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  background-color: #6FBF1F;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.3s ease-in-out;
+}
+
+.scroll-btn:hover {
+  background-color: #9ff34a;
+}
+
+.down {
+  bottom: 80px;
+}
+
+.up {
+  bottom: 20px;
+}
   

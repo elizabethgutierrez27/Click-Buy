@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-inicio',
   standalone: true,
 
-  imports: [NavbarComponent, CommonModule],
+  imports: [CommonModule],
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.css'
 })

@@ -1,52 +1,80 @@
 .site-map-container {
-    background: #f8f9fa;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    max-width: 900px;
-    margin: auto;
-  }
-  
-  h2 {
-    color: #004085;
-    margin-bottom: 15px;
-  }
-  
-  .site-map-grid {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-  }
-  
-  .site-map-column {
-    flex: 1;
-    min-width: 200px;
-    margin: 10px;
-  }
-  
-  h3 {
-    color: #575883;
-    border-bottom: 2px solid #004085;
-    padding-bottom: 5px;
-  }
-  
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  ul li {
-    margin: 8px 0;
-  }
-  
-  ul li a {
-    text-decoration: none;
-    color: #7259aa;
-    font-weight: bold;
-  }
-  
-  ul li a:hover {
-    color: #004085;
-    text-decoration: underline;
-  }
-  
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 900px;
+  margin: auto;
+}
+
+h2 {
+  color: #004085;
+  margin-bottom: 30px;
+}
+
+.site-map-grid {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap; 
+  gap: 20px; 
+}
+
+.site-map-section {
+  text-align: center;
+  flex: 1; 
+  min-width: 200px; 
+}
+
+.site-map-node {
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 10px 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.site-map-node:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.main-node {
+  background: #AC66F2;
+  color: white;
+}
+
+.main-node h3 {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.sub-nodes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.sub-nodes .site-map-node {
+  width: 80%;
+}
+
+.site-map-node a {
+  text-decoration: none;
+  color: #7259aa;
+  font-weight: bold;
+}
+
+.site-map-node a:hover {
+  color: #AC66F2;
+  text-decoration: underline;
+}
+
+/* Conectores verticales */
+.connector-vertical {
+  width: 2px;
+  height: 20px;
+  background: #004085;
+  margin: 5px 0;
+}
