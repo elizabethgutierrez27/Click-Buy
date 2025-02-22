@@ -30,4 +30,10 @@
   <ng-template #noProductosPromocion>
     <p>No hay productos en promoción actualmente.</p>
   </ng-template>
+
+     <!-- Botón para ir abajo -->
+     <button *ngIf="showScrollDown" class="scroll-btn down" (click)="scrollToBottom()">↓</button>
+
+     <!-- Botón para ir arriba -->
+     <button *ngIf="showScrollUp" class="scroll-btn up" (click)="scrollToTop()">↑</button>
 </div>

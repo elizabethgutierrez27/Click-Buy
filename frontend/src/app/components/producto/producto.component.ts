@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { ProductoService, Producto } from '../../services/producto.service'; 
 import { CategoriaService, Categoria } from '../../services/categoria.service';
 import { FormsModule } from '@angular/forms';
@@ -26,6 +26,8 @@ import { SugerenciasService } from '../../services/sugerencias.service';
   providers: [ProductoService, CategoriaService, CategoryFilterPipe,ProveedorService]
 })
 
+
+
 export class ProductoComponent implements OnInit {
   productos: Producto[] = [];
   categorias: Categoria[] = [];
@@ -38,6 +40,19 @@ export class ProductoComponent implements OnInit {
   productosPorAgotarse: Producto[] = [];
   productosDisponibles: Producto[] = [];
   contexto: ContextoProducto;
+
+  @HostListener("window:scroll", [])
+      onScroll() {
+        const scrollY = window.scrollY;
+        const maxScroll = document.body.scrollHeight - window.innerHeight;
+        
+        this.showScrollUp = scrollY > 300;
+        this.showScrollDown = scrollY < maxScroll - 100;
+  
+      }
+  @ViewChild('searchInput', { static: false }) searchInput!: ElementRef<HTMLInputElement>;
+  showScrollUp = false;
+  showScrollDown = true;
   
 
 verDetalleProducto(id: number | undefined): void {
@@ -223,6 +238,14 @@ actualizarProducto() {
   }
   irASurtirProductos(): void {
     this.router.navigate(['/surtir']);
+  }
+
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  scrollToBottom() {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
   }
 
 }

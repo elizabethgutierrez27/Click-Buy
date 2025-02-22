@@ -58,7 +58,7 @@ body {
 }
 
 .btn-primary:hover {
-  background-color: #AC66F2;
+  background-color: #9b50e0;
 }
 
 /* Services Section */
@@ -84,23 +84,34 @@ body {
 .service-card {
   background-color: #ffffff;
   padding: 2rem;
-  border-radius: 8px;
+  border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   width: 300px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  overflow: hidden; /* Para que la imagen no se salga del borde */
 }
 
 .service-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
+/* Estilos para las imágenes */
 .service-card img {
-  width: 100px;
-  height: 100px;
-  margin-bottom: 1rem;
+  width: 100%; /* Ocupa el 100% del ancho de la tarjeta */
+  height: 200px; /* Altura fija para todas las imágenes */
+  object-fit: cover; /* Ajusta la imagen sin distorsionarla */
+  margin-bottom: 1.5rem;
+  border-radius: 8px; /* Bordes ligeramente redondeados */
+  transition: transform 0.3s ease; /* Efecto de zoom al hacer hover */
 }
 
+.service-card:hover img {
+  transform: scale(1.1); /* Zoom al hacer hover */
+}
+
+/* Estilos para el texto */
 .service-card h3 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
@@ -147,10 +158,6 @@ body {
   font-size: 1rem;
 }
 
-.nav-link.active.custom-font {
-  color: white !important;
-}
-
 .contact button {
   background-color: #6FBF1F;
   color: #ffffff;
@@ -166,12 +173,7 @@ body {
   background-color: #9ff34a;
 }
 
-
-.nav-link.active {
-  color: white !important;
-  font-size: 1.5rem;
-  font-family: 'Lobster', cursive;
-}
+/* Botones de scroll */
 .scroll-btn {
   position: fixed;
   right: 20px;
@@ -188,7 +190,7 @@ body {
 }
 
 .scroll-btn:hover {
-  background-color: #6FBF1F;
+  background-color: #9ff34a;
 }
 
 .down {
