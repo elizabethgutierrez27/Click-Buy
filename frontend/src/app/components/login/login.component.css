@@ -40,6 +40,11 @@ nav {
   height: 80px;
 }
 
+.g-recaptcha {
+  margin: 0 auto;
+}
+
+
 /* Footer fijo en la parte inferior */
 .footer {
   width: 100%;
