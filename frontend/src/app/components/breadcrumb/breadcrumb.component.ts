@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, RouterLink } from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -5,7 +6,7 @@ import { filter } from 'rxjs/operators';
 @Component({
   selector: 'app-breadcrumb',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, CommonModule],
   templateUrl: './breadcrumb.component.html',
   styleUrl: './breadcrumb.component.css'
 })

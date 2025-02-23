@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { BreadcrumbComponent } from '../../breadcrumb/breadcrumb.component';
+import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
 
 
 declare var grecaptcha: {

@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MapaSitioComponent } from './components/mapa-sitio/mapa-sitio.component';
 import { FotterComponent } from './components/fotter/fotter.component';
-import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-root',
