@@ -15,6 +15,8 @@ import { InicioComponent } from './components/inicio/inicio.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MapaSitioComponent } from './components/mapa-sitio/mapa-sitio.component';
 import { TerminosypriComponent } from './components/terminosypri/terminosypri.component';
+import { ServerErrorComponent } from './components/server-error/server-error.component';
+import { PaginaErrorComponent } from './components/pagina-error/pagina-error.component';
 
 export const routes: Routes = [
     {path: '', component: InicioComponent},
