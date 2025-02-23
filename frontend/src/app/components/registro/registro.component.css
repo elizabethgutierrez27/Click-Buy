@@ -63,12 +63,30 @@ html, body {
 
 /* Botón redondeado */
 .btn-primary {
-  background-color: #004080;
-  border: none;
+  background-color: #d0a9f8; /* Morado claro */
+  border: none; /* Sin borde */
+  color: white; /* Texto en blanco */
 }
 
 .btn-primary:hover {
-  background-color: #002d5a;
+  background-color: #AC66F2; /* Morado más oscuro al pasar el mouse */
+}
+
+.btn-primary:disabled {
+  background-color: #d0a9f8; 
+  opacity: 0.7; /* Reduce la opacidad para indicar que está deshabilitado */
+}
+
+h2 {
+  font-size: 2rem; /* Tamaño de fuente más grande */
+  font-weight: bold; /* Texto en negrita */
+  color: #333; /* Color del texto */
+  margin-bottom: 1.5rem; /* Espacio debajo del título */
+}
+
+.form-label {
+  font-weight: bold; /* Texto en negrita */
+  color: #555; /* Color del texto */
 }
 
 /* Responsividad */

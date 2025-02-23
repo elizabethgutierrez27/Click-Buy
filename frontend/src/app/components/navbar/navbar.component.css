@@ -1,5 +1,26 @@
+/* Estilos para el navbar */
 .nav-link.active {
-    color: white !important;
-    font-size: 1.5rem;
-    font-family: 'Lobster', cursive;
+  color: white !important;
+  font-size: 1.5rem;
+  font-family: 'Lobster', cursive;
+}
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 768px) {
+  .navbar-toggler {
+      border-color: white; /* Color del borde del botón de menú */
   }
+
+  .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  }
+
+  .d-flex.flex-column {
+      align-items: flex-start; /* Alinear elementos a la izquierda */
+  }
+
+  .d-flex.flex-column a,
+  .d-flex.flex-column form {
+      margin-bottom: 10px; /* Espacio entre elementos */
+  }
+}

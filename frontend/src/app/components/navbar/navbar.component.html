@@ -1,32 +1,56 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #F291A3;">
+<nav class="navbar navbar-expand-lg" style="background-color: #F291A3;">
     <div class="container-fluid" style="background-color: #F291A3;">
-        <a class="navbar-brand" href="#">
-            <img src="assets/logo.png" alt="logo" width="80" height="80" class="d-inline-block align-top">
-        </a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active custom-font" aria-current="page" href="#">Click & Buy</a>
-                </li>
-            </ul>
-        </div>
+        <!-- Logo y nombre "Click & Buy" -->
         <div class="d-flex align-items-center">
-            <a href="producto" class="text-white" style="font-size: 0.9rem; padding: 18px;">
-                <i class="fas fa-box">Productos</i>
+            <a class="navbar-brand" href="#">
+                <img src="assets/logo.png" alt="logo" width="80" height="80" class="d-inline-block align-top">
             </a>
-            <a href="carrito" class="text-white" style="font-size: 0.9rem; padding: 15px;">
-                <i class="fas fa-shopping-cart">Carrito</i>
-            </a>
-            <a href="promocion" class="text-white" style="font-size: 0.9rem; padding: 15px;">
-                <i class="fas fa-tags">Promociones</i>
-            </a>
-            <form class="d-flex" role="search" (submit)="searchContent(); $event.preventDefault()">
-                <input #searchInput class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
-                <button class="btn btn-outline-light" type="submit">🔍</button>
-            </form>
-            <a href="login" class="text-white" style="font-size: 1.2rem; padding: 15px;">
-                <i class="fas fa-user"></i>
-            </a>
+            <span class="navbar-text custom-font" style="font-size: 1.5rem; color: white;">
+                Click & Buy
+            </span>
+        </div>
+
+        <!-- Botón de menú para dispositivos móviles -->
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+            (click)="toggleNavbar()" 
+            
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Contenido colapsable -->
+        <div class="collapse navbar-collapse" id="navbarNav" #navbarCollapse>
+            <!-- Elementos alineados a la derecha -->
+            <div class="d-flex flex-column flex-lg-row align-items-center gap-3 ms-auto">
+                <!-- Enlaces -->
+                <a href="producto" class="text-white text-decoration-none" (click)="closeNavbar()">
+                    <i class="fas fa-box"></i> Productos
+                </a>
+                <a href="carrito" class="text-white text-decoration-none" (click)="closeNavbar()">
+                    <i class="fas fa-shopping-cart"></i> Carrito
+                </a>
+                <a href="promocion" class="text-white text-decoration-none" (click)="closeNavbar()">
+                    <i class="fas fa-tags"></i> Promociones
+                </a>
+
+                <!-- Formulario de búsqueda -->
+                <form class="d-flex" role="search" (submit)="searchContent(); $event.preventDefault()">
+                    <input #searchInput class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">🔍</button>
+                </form>
+
+                <!-- Ícono de usuario -->
+                <a href="login" class="text-white text-decoration-none" (click)="closeNavbar()">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
         </div>
     </div>
 </nav>

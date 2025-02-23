@@ -80,13 +80,19 @@ nav {
 }
 
 /* Botón redondeado */
-.btn-primary {
-  background-color: #004080;
-  border: none;
+.btn-morado {
+  background-color: #d0a9f8; /* Morado claro */
+  border: none; /* Sin borde */
+  color: white; /* Texto en blanco */
 }
 
-.btn-primary:hover {
-  background-color: #002d5a;
+.btn-morado:hover {
+  background-color: #AC66F2; /* Morado más oscuro al pasar el mouse */
+}
+
+.btn-morado:disabled {
+  background-color: #d0a9f8; /* Mantén el color morado */
+  opacity: 0.7; /* Reduce la opacidad para indicar que está deshabilitado */
 }
 
 /* Responsividad */
@@ -108,4 +114,17 @@ nav {
     display: block;
     padding: 10px;
   }
+}
+
+.form-label {
+  font-weight: bold; /* Texto en negrita */
+  color: #333; /* Color del texto */
+  margin-bottom: 0.5rem; /* Espacio debajo del label */
+}
+
+h2 {
+  font-size: 2rem; /* Tamaño de fuente más grande */
+  font-weight: bold; /* Texto en negrita */
+  color: #333; /* Color del texto */
+  margin-bottom: 1.5rem; /* Espacio debajo del título */
 }

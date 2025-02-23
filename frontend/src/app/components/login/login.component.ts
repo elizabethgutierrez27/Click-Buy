@@ -41,6 +41,12 @@ export class LoginComponent {
       alert('Por favor, completa el CAPTCHA.');
       return;
     }
+
+    // Si el formulario es inválido, no enviar la solicitud
+    if (this.loginForm.invalid) {
+      alert('Por favor, completa todos los campos correctamente.');
+      return;
+    }
   
     // Crear el objeto de datos para enviar
     const loginData = {
@@ -56,7 +62,7 @@ export class LoginComponent {
       .subscribe(
         (result: any) => {
           console.log('Respuesta completa del servidor:', result); // Depuración
-          if (result.success) {
+          if (result.token) {
             console.log('Redirigiendo a /users'); // Depuración
             this.router.navigate(['/users']); // Redirige a /users
           } else {

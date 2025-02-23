@@ -1,6 +1,8 @@
 import { Component, ElementRef, ViewChild, HostListener  } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { Collapse } from 'bootstrap';
+
 
 
 @Component({
@@ -12,6 +14,8 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent {
   @ViewChild('searchInput', { static: false }) searchInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('navbarCollapse') navbarCollapse!: ElementRef; // Referencia al menú colapsable
+  private bsCollapse: Collapse | null = null; // Instancia de Collapse
   showScrollUp = false;
   showScrollDown = true;
 
@@ -85,5 +89,24 @@ export class NavbarComponent {
 
   scrollToBottom() {
     window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+  }
+  
+
+  // Método para cerrar el menú colapsable
+  closeNavbar() {
+    if (this.bsCollapse) {
+      this.bsCollapse.hide(); // Ocultar el menú colapsable
+    }
+  }
+
+  // Método para alternar el menú colapsable
+  toggleNavbar() {
+    if (!this.bsCollapse) {
+      // Inicializar Collapse si no está inicializado
+      this.bsCollapse = new Collapse(this.navbarCollapse.nativeElement, {
+        toggle: false,
+      });
+    }
+    this.bsCollapse.toggle(); // Alternar el menú colapsable
   }
 }
