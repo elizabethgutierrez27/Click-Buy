@@ -1,0 +1,14 @@
+<!-- Migas de Pan -->
+<div class="breadcrumb-container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a routerLink="/">Inicio</a>
+        </li>
+        <li *ngFor="let breadcrumb of breadcrumbs" class="breadcrumb-item">
+          <span class="divider">/</span>
+          <a [routerLink]="breadcrumb.url">{{ breadcrumb.label }}</a>
+        </li>
+      </ol>
+    </nav>
+  </div>

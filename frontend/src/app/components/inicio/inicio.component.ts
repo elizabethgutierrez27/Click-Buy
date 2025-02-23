@@ -1,12 +1,12 @@
 import { NavbarComponent } from '../navbar/navbar.component';
 import { Component, ElementRef, ViewChild, HostListener  } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BreadcrumbComponent } from '../../breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-inicio',
   standalone: true,
-
-  imports: [CommonModule],
+  imports: [NavbarComponent, CommonModule, BreadcrumbComponent],
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.css'
 })
