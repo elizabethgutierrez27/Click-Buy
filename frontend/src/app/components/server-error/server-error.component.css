@@ -1,0 +1,96 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #fffefe, #ffe9e3);
+    text-align: center;
+    padding: 50px;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1s ease-in-out;
+}
+
+.error-title {
+    font-size: 120px;
+    font-weight: 700;
+    color: #f390a3;
+    text-shadow: 3px 3px 10px rgba(255, 64, 129, 0.3);
+    animation: bounce 1.5s infinite alternate;
+}
+
+.message {
+    font-size: 22px;
+    color: #000000;
+    margin-bottom: 15px;
+}
+
+.cart-message {
+    font-size: 20px;
+    color: #000000;
+    margin-top: 20px;
+}
+
+.hello-kitty {
+    width: 300px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.5);
+}
+
+.cart-button {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+}
+
+.cart-container {
+    position: relative;
+    width: 200px;
+    height: 150px;
+    margin: 0 auto;
+    animation: drive 3s ease-in-out infinite; /* Animación para mover el contenedor */
+}
+
+.cart-image {
+    width: 150px; /* Tamaño del carrito */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+    transform: scaleX(-1); /* Voltea el carrito hacia la izquierda */
+}
+
+.cart-text {
+    position: absolute;
+    top: 3%;
+    right: 26%;
+    font-size: 18px;
+    color: #1f1e1e; /* Texto gris oscuro */
+    font-weight: 500;
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.5);
+}
+
+.cart-button:hover .cart-image {
+    transform: scaleX(-1) scale(1.1); /* Mantén el carrito volteado y escala */
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(-10px); }
+}
+
+@keyframes drive {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(20px); }
+}
