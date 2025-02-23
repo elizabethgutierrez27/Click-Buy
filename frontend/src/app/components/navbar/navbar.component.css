@@ -17,14 +17,14 @@
   color: white;
   font-size: 1.4rem;
   text-decoration: none;
-  margin-left: 45%;
+  margin-left: -5%;
 }
 
 .icon-link2 {
   color: white;
   font-size: 1.4rem;
   text-decoration: none;
-  margin-left: 15%;
+  margin-left: 20%;
 }
 
 .icon-link:hover {
@@ -34,7 +34,7 @@
 /* Buscador */
 .search-bar {
   flex-grow: 1; /* Ocupa el espacio disponible */
-  width: 850px; /* Puedes ajustar este valor */
+  width: 100px; /* Puedes ajustar este valor */
   margin-left: 5%;
 }
 
@@ -43,7 +43,8 @@
   align-items: center;
   border-radius: 25px;
   background-color: white;
-  padding: 5px 10px;
+  padding: 5px 9px;
+  width: 100%;
 }
 
 .search-input {
@@ -72,14 +73,14 @@
 .navbar-nav {
   display: flex;
   align-items: center;
-  margin-left: -10px; /* Espacio entre el buscador y los enlaces */
+  margin-right: 30px; /* Espacio entre el buscador y los enlaces */
 }
 
 .nav-link {
   font-size: 1rem;
   color: white !important;
   font-weight: 500;
-  margin-left: 15px; /* Espacio entre los enlaces */
+  margin-left: 20px; /* Espacio entre los enlaces */
 }
 
 .nav-link:hover {
