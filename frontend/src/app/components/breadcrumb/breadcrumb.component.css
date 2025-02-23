@@ -1,63 +1,54 @@
-/* Estilos para las migas de pan */
+/* Contenedor principal */
 .breadcrumb-container {
-    font-family: 'Montserrat', sans-serif;
-    padding: 10px 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .breadcrumb {
-    display: flex;
-    align-items: center;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .breadcrumb-item {
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    color: #333;
-  }
-  
-  .breadcrumb-item a {
-    color: #007bff;
-    text-decoration: none;
-    transition: color 0.3s ease;
-    position: relative;
-  }
-  
-  .breadcrumb-item a:hover {
-    color: #0056b3;
-  }
-  
-  .breadcrumb-item a::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background-color: #007bff;
-    transition: width 0.3s ease;
-  }
-  
-  .breadcrumb-item a:hover::after {
-    width: 100%;
-  }
-  
-  .breadcrumb-item .divider {
-    margin: 0 8px;
-    color: #999;
-    font-weight: 300;
-  }
-  
-  .breadcrumb-item:last-child .divider {
-    display: none;
-  }
-  
-  .breadcrumb-item:last-child a {
-    color: #333;
-    pointer-events: none;
-  }
+  padding: 10px;
+  background-color: transparent; /* Fondo transparente */
+  font-family: Arial, sans-serif; /* Fuente */
+}
+
+/* Estilo de la lista de migas de pan */
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  background-color: transparent;
+}
+
+/* Estilo de cada ítem de las migas de pan */
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #333; /* Color de texto oscuro */
+}
+
+/* Separador entre migas de pan */
+.breadcrumb-item + .breadcrumb-item::before {
+  content: "/"; /* Separador personalizado */
+  padding: 0 8px;
+  color: #666; /* Color del separador */
+}
+
+/* Estilo de los enlaces */
+.breadcrumb-item a {
+  text-decoration: none;
+  color: #007bff; /* Color azul para los enlaces */
+  transition: color 0.3s ease;
+}
+
+/* Efecto hover en los enlaces */
+.breadcrumb-item a:hover {
+  color: #0056b3; /* Color azul más oscuro al pasar el mouse */
+  text-decoration: underline;
+}
+
+/* Estilo para el ítem activo (última miga de pan) */
+.breadcrumb-item:last-child {
+  color: #000; /* Color de texto más oscuro para el ítem activo */
+}
+
+.breadcrumb-item:last-child a {
+  color: inherit; /* Hereda el color del ítem activo */
+  pointer-events: none; /* Desactiva el clic en el último ítem */
+}
