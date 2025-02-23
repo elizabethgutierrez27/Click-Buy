@@ -1,26 +1,99 @@
-/* Estilos para el navbar */
-.nav-link.active {
-  color: white !important;
-  font-size: 1.5rem;
-  font-family: 'Lobster', cursive;
+/* Estilos generales */
+.navbar {
+  background-color: #F291A3 !important;
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Ajustes para dispositivos móviles */
-@media (max-width: 768px) {
-  .navbar-toggler {
-      border-color: white; /* Color del borde del botón de menú */
-  }
+/* Logo y nombre */
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white !important;
+}
 
-  .navbar-toggler-icon {
-      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-  }
+/* Íconos de usuario y carrito alineados a la derecha */
+.icon-link1 {
+  color: white;
+  font-size: 1.4rem;
+  text-decoration: none;
+  margin-left: 45%;
+}
 
-  .d-flex.flex-column {
-      align-items: flex-start; /* Alinear elementos a la izquierda */
-  }
+.icon-link2 {
+  color: white;
+  font-size: 1.4rem;
+  text-decoration: none;
+  margin-left: 15%;
+}
 
-  .d-flex.flex-column a,
-  .d-flex.flex-column form {
-      margin-bottom: 10px; /* Espacio entre elementos */
+.icon-link:hover {
+  color: #FFC0CB;
+}
+
+/* Buscador */
+.search-bar {
+  flex-grow: 1; /* Ocupa el espacio disponible */
+  width: 850px; /* Puedes ajustar este valor */
+  margin-left: 5%;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  border-radius: 25px;
+  background-color: white;
+  padding: 5px 10px;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 25px 0 0 25px;
+}
+
+.search-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #F291A3;
+  padding: 8px 12px;
+  border-radius: 0 25px 25px 0;
+}
+
+.search-btn:hover {
+  color: #E10098;
+}
+
+/* Enlaces al lado del buscador */
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  margin-left: -10px; /* Espacio entre el buscador y los enlaces */
+}
+
+.nav-link {
+  font-size: 1rem;
+  color: white !important;
+  font-weight: 500;
+  margin-left: 15px; /* Espacio entre los enlaces */
+}
+
+.nav-link:hover {
+  color: #FFC0CB !important;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .search-bar {
+      max-width: 100%;
+  }
+  .navbar-nav {
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
   }
 }
