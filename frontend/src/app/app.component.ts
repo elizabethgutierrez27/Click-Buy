@@ -8,7 +8,7 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent, FotterComponent, BreadcrumbComponent],
+  imports: [RouterOutlet, NavbarComponent, FotterComponent],
   
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
