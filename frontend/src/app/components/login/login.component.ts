@@ -16,7 +16,7 @@ declare var grecaptcha: {
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, HttpClientModule, BreadcrumbComponent],
+  imports: [ReactiveFormsModule, CommonModule, HttpClientModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
   providers: [AuthService]
