@@ -47,8 +47,13 @@ export class NavbarComponent {
       case 'promociones':
         this.router.navigate(['/promocion']);
         break;
-      default:
-        // Buscar en el contenido de la página actual
+      case 'login':
+        this.router.navigate(['/login']);
+        break;
+      case 'registro':
+        this.router.navigate(['/registro']);
+        break;
+        default:
         this.highlightSearchTerm(searchTerm);
         break;
     }
