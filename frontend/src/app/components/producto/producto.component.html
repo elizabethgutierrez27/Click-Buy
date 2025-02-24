@@ -10,22 +10,24 @@
     <div class="container mt-5">
         <header class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="display-4">Lista de Productos</h2>
+            <!--
             <div>
                 <button class="btn btn-primary" (click)="abrirModalAgregar()">Agregar Producto</button>
                 <button class="btn btn-warning" (click)="irASurtirProductos()">Surtir Productos</button>
             </div>
+            -->
         </header>
 
         <!-- Selector de Categoría y Buscador -->
         <div class="row mb-4">
             <div class="col-md-6">
-                <select class="form-control" (change)="onCategoriaChange($event)">
+                <select class="form-control select-categoria" (change)="onCategoriaChange($event)">
                     <option value="0">Todas las categorías</option>
                     <option *ngFor="let categoria of categorias" [value]="categoria.Id">{{ categoria.Nombre }}</option>
                 </select>
             </div>
             <div class="col-md-6">
-                <input type="text" class="form-control" (input)="onBusquedaChange($event)" placeholder="Buscar productos...">
+                <input type="text" class="form-control buscador" (input)="onBusquedaChange($event)" placeholder="Buscar productos...">
             </div>
         </div>
 

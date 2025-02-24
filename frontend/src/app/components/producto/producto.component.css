@@ -18,25 +18,6 @@ body {
   margin: 0 auto; /* Centrar el contenedor */
 }
 
-/* Footer */
-.footer {
-  width: 100%;
-  background-color: #04092cda;
-  color: white;
-  text-align: center;
-  padding: 15px;
-  margin-top: auto; /* Empuja el footer hacia abajo */
-}
-
-.footer a {
-  color: white;
-  text-decoration: none;
-  margin: 0 10px;
-}
-
-.footer a:hover {
-  color: #ffc107; /* Cambia el color al pasar el mouse */
-}
 
 /* Tarjetas de productos */
 .product-card {
@@ -217,4 +198,46 @@ body {
 
 .up {
   bottom: 20px;
+}
+
+/* Estilo para el dropdown de categorías */
+.form-control.select-categoria {
+  background-color: #f8f9fa;
+  border: 2px solid #AC66F2;
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.form-control.select-categoria:hover {
+  border-color: #AC66F2;
+  background-color: #e9ecef;
+}
+
+.form-control.select-categoria:focus {
+  border-color: #AC66F2;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Estilo para el buscador */
+.form-control.buscador {
+  background-color: #f8f9fa;
+  border: 2px solid #AC66F2;
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.form-control.buscador:hover {
+  border-color: #AC66F2;
+  background-color: #e9ecef;
+}
+
+.form-control.buscador:focus {
+  border-color: #AC66F2;
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
 }
