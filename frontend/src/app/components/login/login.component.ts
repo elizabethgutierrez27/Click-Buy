@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
 
-
 declare var grecaptcha: {
   getResponse: () => string;
   render: (container: string | HTMLElement, parameters: { sitekey: string }) => void;
@@ -24,7 +23,7 @@ declare var grecaptcha: {
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private router:Router) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) {
     this.loginForm = this.fb.group({
       correo: ['', [Validators.required, Validators.email]],
       contrasena: ['', Validators.required]
@@ -36,7 +35,7 @@ export class LoginComponent {
     // Obtener la respuesta del CAPTCHA
     const captchaResponse = grecaptcha.getResponse();
     console.log('Respuesta del CAPTCHA:', captchaResponse); // Depuración
-  
+
     if (!captchaResponse) {
       alert('Por favor, completa el CAPTCHA.');
       return;
@@ -47,14 +46,14 @@ export class LoginComponent {
       alert('Por favor, completa todos los campos correctamente.');
       return;
     }
-  
+
     // Crear el objeto de datos para enviar
     const loginData = {
       Correo: this.loginForm.value.correo,
       Contrasena: this.loginForm.value.contrasena,
       'g-recaptcha-response': captchaResponse
     };
-  
+
     console.log('Datos enviados al backend:', loginData); // Depuración
 
     // Enviar los datos al backend
@@ -74,7 +73,13 @@ export class LoginComponent {
           console.error('Error completo:', error); // Depuración
           console.error('Mensaje de error:', error.message); // Depuración
           console.error('Estado del error:', error.status); // Depuración
-          alert('Error al iniciar sesion, revisa tus credenciales');
+
+          if (error.status === 500) {
+            console.log('Redirigiendo a página de error 500'); // Depuración
+            this.router.navigate(['/serverError']); // Redirige a la página de error 500
+          } else {
+            alert('Error al iniciar sesión, revisa tus credenciales');
+          }
         }
       );
   }
