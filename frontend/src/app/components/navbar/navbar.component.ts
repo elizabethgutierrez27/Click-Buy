@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild, HostListener  } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { Collapse } from 'bootstrap';
+import { SearchService } from '../../services/search.service';
 
 
 
@@ -18,8 +19,9 @@ export class NavbarComponent {
   private bsCollapse: Collapse | null = null; // Instancia de Collapse
   showScrollUp = false;
   showScrollDown = true;
+  searchResults: any[] = []; // Almacena los resultados de la búsqueda
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private searchService: SearchService) {}
 
   @HostListener("window:scroll", [])
   onScroll() {
@@ -34,7 +36,10 @@ export class NavbarComponent {
     const searchTerm = this.searchInput.nativeElement.value.trim().toLowerCase();
     this.clearHighlights();
 
-    if (searchTerm === "") return;
+    if (searchTerm === "") {
+      this.searchResults = []; // Limpiar resultados si el término está vacío
+      return;
+    }
 
     // Redireccionar según el término de búsqueda
     switch (searchTerm) {
@@ -53,7 +58,18 @@ export class NavbarComponent {
       case 'registro':
         this.router.navigate(['/registro']);
         break;
-        default:
+      default:
+        // Si no es una redirección, buscar productos en la base de datos
+        this.searchService.searchProducts(searchTerm).subscribe(
+          (results) => {
+            this.searchResults = results; // Almacenar los resultados
+          },
+          (error) => {
+            console.error('Error al buscar productos:', error);
+            this.searchResults = []; // Limpiar resultados en caso de error
+          }
+        );
+        // Resaltar el término en la página actual
         this.highlightSearchTerm(searchTerm);
         break;
     }
@@ -95,7 +111,6 @@ export class NavbarComponent {
   scrollToBottom() {
     window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
   }
-  
 
   // Método para cerrar el menú colapsable
   closeNavbar() {

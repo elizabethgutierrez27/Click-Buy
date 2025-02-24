@@ -18,6 +18,7 @@ class ProductoRoutes {
         this.router.get('/promocion', productoControllers_1.default.getProductosEnPromocion);
         this.router.get('/codigo/:codigoBarras', productoControllers_1.default.getOneByCodigoBarras);
         this.router.get('/', productoControllers_1.default.list);
+        this.router.get('/search', productoControllers_1.default.searchProductos);
         this.router.get('/:Id', productoControllers_1.default.getOne);
         this.router.post('/', upload.single('Imagen'), productoControllers_1.default.create);
         this.router.delete('/:Id', productoControllers_1.default.delete);

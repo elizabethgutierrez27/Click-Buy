@@ -145,7 +145,32 @@ class ProductoController {
                 resp.status(500).json({ message: 'Error desconocido', error });
             }   
         }
-    }    
+    }   
+    
+    public async searchProductos(req: Request, res: Response): Promise<void> {
+        const { term } = req.query;
+    
+        if (!term) {
+            res.status(400).json({ message: 'Término de búsqueda no proporcionado' });
+            return;
+        }
+    
+        try {
+            const [productos] = await pool.query(
+                'SELECT * FROM productos WHERE Nombre LIKE ?',
+                [`%${term}%`]
+            );
+    
+            if (productos.length > 0) {
+                res.json(productos); // Devuelve los productos encontrados
+            } else {
+                res.status(404).json({ message: 'No se encontraron productos' });
+            }
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Error al buscar productos', error });
+        }
+    }
 
 }
 const productoController = new ProductoController();

@@ -161,6 +161,28 @@ class ProductoController {
             }
         });
     }
+    searchProductos(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { term } = req.query;
+            if (!term) {
+                res.status(400).json({ message: 'Término de búsqueda no proporcionado' });
+                return;
+            }
+            try {
+                const [productos] = yield database_1.default.query('SELECT * FROM productos WHERE Nombre LIKE ?', [`%${term}%`]);
+                if (productos.length > 0) {
+                    res.json(productos); // Devuelve los productos encontrados
+                }
+                else {
+                    res.status(404).json({ message: 'No se encontraron productos' });
+                }
+            }
+            catch (error) {
+                console.error(error);
+                res.status(500).json({ message: 'Error al buscar productos', error });
+            }
+        });
+    }
 }
 const productoController = new ProductoController();
 exports.default = productoController;
