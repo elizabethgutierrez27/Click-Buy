@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild, HostListener  } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Collapse } from 'bootstrap';
 import { SearchService } from '../../services/search.service';
 
@@ -9,7 +9,7 @@ import { SearchService } from '../../services/search.service';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })

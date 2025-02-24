@@ -150,6 +150,8 @@ class ProductoController {
     public async searchProductos(req: Request, res: Response): Promise<void> {
         const { term } = req.query;
     
+        console.log('Término de búsqueda:', term); // Verifica el término de búsqueda
+    
         if (!term) {
             res.status(400).json({ message: 'Término de búsqueda no proporcionado' });
             return;
@@ -161,8 +163,11 @@ class ProductoController {
                 [`%${term}%`]
             );
     
-            if (productos.length > 0) {
-                res.json(productos); // Devuelve los productos encontrados
+            console.log('Resultados de la consulta:', productos); // Verifica los resultados de la consulta
+    
+            // Asegúrate de que 'productos' sea un array
+            if (productos && Object.keys(productos).length > 0) {
+                res.json([productos]); // Convierte el objeto en un array
             } else {
                 res.status(404).json({ message: 'No se encontraron productos' });
             }
