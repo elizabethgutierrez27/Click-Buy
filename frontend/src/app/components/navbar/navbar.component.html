@@ -57,14 +57,33 @@
 
             <!-- Íconos de carrito y usuario alineados a la derecha -->
             <div class="d-flex flex-column flex-lg-row align-items-center justify-content-center gap-3 ms-lg-auto">
-                <a href="carrito" class="icon-link1" (click)="closeNavbar()" data-tooltip="Carrito">
+                <!-- Ícono del carrito -->
+                <a href="carrito" class="icon-link1" (click)="closeNavbar()">
                     <i class="fas fa-shopping-cart"></i> 
                 </a>
-                <a href="login" class="icon-link2" (click)="closeNavbar()" data-tooltip="Login">
-                    <i class="fas fa-user"></i>
-                </a>
+
+                <!-- Menú desplegable de "Mi Cuenta" -->
+                <div class="dropdown" onmouseover="showDropdown()" onmouseout="hideDropdown()">
+                    <a 
+                        class="icon-link2 dropdown-toggle" 
+                        href="#" 
+                        role="button" 
+                        id="dropdownMenuLink" 
+                        data-bs-toggle="dropdown" 
+                        aria-expanded="false"
+                    >
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink" id="accountDropdown">
+                        <li><a class="dropdown-item" href="login">Iniciar sesión</a></li>
+                        <li><a class="dropdown-item" href="miCuenta">Mi cuenta</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <!--<li><a class="dropdown-item" href="pedidos">Pedidos</a></li>-->
+                        <li><a class="dropdown-item" href="ayuda">Ayuda</a></li>
+                        <li><a class="dropdown-item" href="cerrar-sesion">Cerrar sesión</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-
 </nav>

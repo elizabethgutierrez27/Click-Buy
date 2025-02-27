@@ -19,6 +19,8 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
 import { ServerErrorComponent } from './components/server-error/server-error.component';
 import { PaginaErrorComponent } from './components/pagina-error/pagina-error.component';
 import { authGuard } from './guards/auth.guard';
+import { AyudaComponent } from './components/ayuda/ayuda.component';
+import { MiCuentaComponent } from './components/mi-cuenta/mi-cuenta.component';
 
 export const routes: Routes = [
     {path: '', component: InicioComponent},
@@ -40,5 +42,7 @@ export const routes: Routes = [
     {path: 'terminosypri', component:TerminosypriComponent},
     {path: 'serverError', component:ServerErrorComponent},
     { path: 'error-404', component: PaginaErrorComponent }, 
+    {path: 'ayuda', component: AyudaComponent},
+    {path: 'miCuenta', component: MiCuentaComponent},
   { path: '**', redirectTo: '/error-404' }
 ];

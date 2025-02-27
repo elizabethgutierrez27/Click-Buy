@@ -1,0 +1,27 @@
+.ayuda-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h2, h3 {
+    color: #F291A3;
+}
+
+ul {
+    text-align: left;
+    margin: 15px auto;
+    padding: 0;
+    list-style-type: none;
+}
+
+ul li {
+    background: #fdecef;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+}

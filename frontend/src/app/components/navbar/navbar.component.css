@@ -17,34 +17,10 @@
   color: white;
   font-size: 1.8rem; 
   text-decoration: none;
-  position: relative; 
 }
 
 .icon-link1:hover, .icon-link2:hover {
   color: #FFC0CB;
-}
-
-/* Tooltips para los íconos */
-.icon-link1::after, .icon-link2::after {
-  content: attr(data-tooltip); 
-  position: absolute;
-  bottom: -35px; 
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #FFC0CB;
-  color: rgb(255, 255, 255); /* Texto blanco */
-  font-size: 1.0rem; /* Tamaño del texto */
-  padding: 5px 10px;
-  border-radius: 5px;
-  opacity: 0; 
-  visibility: hidden; 
-  transition: opacity 0.3s ease, visibility 0.3s ease; 
-  white-space: nowrap; 
-}
-
-.icon-link1:hover::after, .icon-link2:hover::after {
-  opacity: 1; 
-  visibility: visible;
 }
 
 /* Buscador */
@@ -103,6 +79,41 @@
   color: #FFC0CB !important;
 }
 
+/* Estilos para el menú desplegable */
+.dropdown-menu {
+  background-color: #F291A3; /* Color de fondo del menú */
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: none; /* Oculto por defecto */
+}
+
+.dropdown-item {
+  color: white; /* Color del texto */
+  font-size: 1rem;
+  padding: 10px 20px;
+}
+
+.dropdown-item:hover {
+  background-color: #e57373; /* Color de fondo al pasar el cursor */
+  color: white;
+}
+
+.dropdown-divider {
+  border-color: rgba(255, 255, 255, 0.1); /* Color del divisor */
+}
+
+/* Mostrar el menú desplegable al pasar el cursor */
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Alinear el menú desplegable a la derecha */
+.dropdown-menu-end {
+  right: 0;
+  left: auto;
+}
+
 /* Responsive */
 @media (max-width: 992px) {
   .search-bar {
@@ -126,7 +137,6 @@
       margin-top: 10px; 
   }
 }
-
 
 .search-results {
   position: absolute;
@@ -153,17 +163,4 @@
 
 .search-results li:hover {
   background-color: #f8f9fa;
-}
-
-.dropdown-menu {
-  background-color: #F291A3; /* Color de fondo del menú desplegable */
-  border: none;
-}
-
-.dropdown-item {
-  color: white; /* Color del texto del menú desplegable */
-}
-
-.dropdown-item:hover {
-  background-color: #e57373; /* Color de fondo al pasar el cursor */
 }
