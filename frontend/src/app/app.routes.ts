@@ -18,13 +18,14 @@ import { TerminosypriComponent } from './components/terminosypri/terminosypri.co
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { ServerErrorComponent } from './components/server-error/server-error.component';
 import { PaginaErrorComponent } from './components/pagina-error/pagina-error.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
     {path: '', component: InicioComponent},
     {path:'users', component:UserComponent},
     {path:'login',component:LoginComponent},
     {path:'carrito/:codigoBarras', component: CarritoComponent},
-    {path:'carrito',component:CarritoComponent},
+    {path:'carrito',component:CarritoComponent, canActivate: [authGuard]},
     {path:'home', component:HomeComponent},
     {path:'proveedor', component:ProveedoresComponent},
     {path:'registro', component:RegistroComponent},

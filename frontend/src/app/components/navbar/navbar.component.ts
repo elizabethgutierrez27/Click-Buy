@@ -138,4 +138,8 @@ export class NavbarComponent {
     }
     this.bsCollapse.toggle(); // Alternar el menú colapsable
   }
+
+  
 }
+
+

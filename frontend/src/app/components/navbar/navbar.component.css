@@ -154,3 +154,16 @@
 .search-results li:hover {
   background-color: #f8f9fa;
 }
+
+.dropdown-menu {
+  background-color: #F291A3; /* Color de fondo del menú desplegable */
+  border: none;
+}
+
+.dropdown-item {
+  color: white; /* Color del texto del menú desplegable */
+}
+
+.dropdown-item:hover {
+  background-color: #e57373; /* Color de fondo al pasar el cursor */
+}
