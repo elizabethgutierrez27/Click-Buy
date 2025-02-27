@@ -38,5 +38,6 @@ export const routes: Routes = [
     {path: 'mapa', component:MapaSitioComponent},
     {path: 'terminosypri', component:TerminosypriComponent},
     {path: 'serverError', component:ServerErrorComponent},
-    {path: '**', component:PaginaErrorComponent}
+    { path: 'error-404', component: PaginaErrorComponent }, 
+  { path: '**', redirectTo: '/error-404' }
 ];

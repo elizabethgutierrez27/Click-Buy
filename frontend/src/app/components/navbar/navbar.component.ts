@@ -62,16 +62,25 @@ export class NavbarComponent {
         // Si no es una redirección, buscar productos en la base de datos
         this.searchService.searchProducts(searchTerm).subscribe(
           (results) => {
-            this.searchResults = results; // Almacenar los resultados
+            if (results.length > 0) {
+              this.searchResults = results; 
+            } else {
+              this.searchResults = []; 
+              this.router.navigate(['/error-404']); 
+            }
+            this.searchInput.nativeElement.value = '';
           },
           (error) => {
             console.error('Error al buscar productos:', error);
-            this.searchResults = []; // Limpiar resultados en caso de error
+            this.searchResults = []; 
+            this.router.navigate(['/error-404']); 
+            this.searchInput.nativeElement.value = '';
           }
         );
         // Resaltar el término en la página actual
         this.highlightSearchTerm(searchTerm);
         break;
+        
     }
   }
 
