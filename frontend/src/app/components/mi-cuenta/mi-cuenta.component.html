@@ -1,14 +1,33 @@
 <div class="mi-cuenta-container">
     <h2>Mi Cuenta</h2>
 
-    <div *ngIf="usuario">
-        <p><strong>Nombre:</strong> {{ usuario.nombre }}</p>
-        <p><strong>Correo:</strong> {{ usuario.correo }}</p>
-        <p><strong>Rol:</strong> {{ usuario.rol }}</p>
-
-        <button class="btn btn-danger" (click)="cerrarSesion()">Cerrar Sesión</button>
+    <!-- Avatar del usuario -->
+    <div class="user-avatar">
+        <i class="fas fa-user"></i> <!-- Icono de usuario -->
     </div>
 
+    <!-- Información del usuario -->
+    <div *ngIf="usuario" class="user-info">
+        <p>
+            <i class="fas fa-user"></i>
+            <strong>Nombre:</strong> {{ usuario.nombre }}
+        </p>
+        <p>
+            <i class="fas fa-envelope"></i>
+            <strong>Correo:</strong> {{ usuario.correo }}
+        </p>
+        <p>
+            <i class="fas fa-user-tag"></i>
+            <strong>Rol:</strong> {{ usuario.rol }}
+        </p>
+
+        <!-- Botón para cerrar sesión -->
+        <button class="btn btn-danger" (click)="cerrarSesion()">
+            <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+        </button>
+    </div>
+
+    <!-- Mensaje si el usuario no ha iniciado sesión -->
     <div *ngIf="!usuario">
         <p>No has iniciado sesión. <a href="/login">Inicia sesión aquí</a></p>
     </div>

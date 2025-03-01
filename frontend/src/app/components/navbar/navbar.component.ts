@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { Collapse } from 'bootstrap';
 import { SearchService } from '../../services/search.service';
-
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -21,7 +21,7 @@ export class NavbarComponent {
   showScrollDown = true;
   searchResults: any[] = []; // Almacena los resultados de la búsqueda
 
-  constructor(private router: Router, private searchService: SearchService) {}
+  constructor(private router: Router, private searchService: SearchService, private authService: AuthService) {}
 
   @HostListener("window:scroll", [])
   onScroll() {
@@ -45,6 +45,9 @@ export class NavbarComponent {
     switch (searchTerm) {
       case 'productos':
         this.router.navigate(['/producto']);
+        break;
+      case 'inicio':
+        this.router.navigate(['/']);
         break;
       case 'carrito':
         this.router.navigate(['/carrito']);
@@ -137,6 +140,16 @@ export class NavbarComponent {
       });
     }
     this.bsCollapse.toggle(); // Alternar el menú colapsable
+  }
+
+  // Verificar si el usuario está autenticado
+  isAuthenticated(): boolean {
+    return this.authService.isAuthenticated();
+  }
+
+  // Cerrar sesión
+  logout(): void {
+    this.authService.logout(); // Llama al método logout de AuthService
   }
 
   

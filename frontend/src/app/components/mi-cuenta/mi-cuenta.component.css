@@ -1,18 +1,82 @@
 .mi-cuenta-container {
     max-width: 500px;
     margin: 20px auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
     text-align: center;
+    font-family: 'Arial', sans-serif;
 }
 
 h2 {
     color: #F291A3;
+    font-size: 28px;
+    margin-bottom: 20px;
 }
 
-p {
+.user-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    background-color: #F291A3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    color: white;
+    box-shadow: 0px 4px 10px rgba(242, 145, 163, 0.3);
+}
+
+.user-info {
+    text-align: left;
+    margin: 20px 0;
+}
+
+.user-info p {
     font-size: 16px;
-    margin: 10px 0;
+    margin: 15px 0;
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+
+.user-info p strong {
+    margin-right: 10px;
+    color: #F291A3;
+}
+
+.user-info p i {
+    margin-right: 10px;
+    color: #F291A3;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.btn-danger {
+    background-color: #F291A3;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #e57373;
+}
+
+a {
+    color: #F291A3;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
 }

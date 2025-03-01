@@ -23,7 +23,7 @@ declare var grecaptcha: {
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.loginForm = this.fb.group({
       correo: ['', [Validators.required, Validators.email]],
       contrasena: ['', Validators.required]
@@ -57,11 +57,12 @@ export class LoginComponent {
     console.log('Datos enviados al backend:', loginData); // Depuración
 
     // Enviar los datos al backend
-    this.http.post('http://localhost:3000/usuario/login', loginData)
-      .subscribe(
-        (result: any) => {
-          console.log('Respuesta completa del servidor:', result); // Depuración
+    this.authService.login(loginData.Correo, loginData.Contrasena, loginData['g-recaptcha-response']).subscribe(
+      (result: any) => {
+        console.log('Respuesta completa del servidor:', result); // Depuración
           if (result.token) {
+            console.log('Token recibido del servidor:', result.token); // Depuración
+            this.authService.setToken(result.token);
             console.log('Redirigiendo a /users'); // Depuración
             this.router.navigate(['/users']); // Redirige a /users
           } else {

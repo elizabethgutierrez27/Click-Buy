@@ -91,7 +91,7 @@ class UsuariosController {
                     const isPasswordValid = yield bcrypt_1.default.compare(Contrasena, user.Contrasena);
                     console.log('¿Contraseña válida?', isPasswordValid);
                     if (isPasswordValid) {
-                        const token = jsonwebtoken_1.default.sign({ id: user.Id, correo: user.Correo, rol: user.Rol }, JWT_SECRET, { expiresIn: '1h' });
+                        const token = jsonwebtoken_1.default.sign({ id: user.Id, nombre: user.Nombre, correo: user.Correo, rol: user.Rol }, JWT_SECRET, { expiresIn: '1h' });
                         resp.json({ message: 'Login successful', token, user });
                     }
                     else {
@@ -171,25 +171,40 @@ class UsuariosController {
     create(req, resp) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const { Nombre, Correo, Contrasena, Rol } = req.body;
+                const { nombre, correo, contrasena, rol, 'g-recaptcha-response': captchaResponse } = req.body;
+                // Verificar que la contraseña esté presente
+                if (!contrasena) {
+                    resp.status(400).json({ message: 'La contraseña es requerida.' });
+                    return;
+                }
+                // Verificar el CAPTCHA primero
+                if (!captchaResponse) {
+                    resp.status(400).json({ message: 'Error: No se recibió la respuesta del CAPTCHA.' });
+                    return;
+                }
+                const secretKey = '6LeO6t0qAAAAAP6sTjj82wcVOpE5tQUIBlP1izdu'; // Reemplaza con tu Secret Key
+                const verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${captchaResponse}`;
+                const captchaVerification = yield axios_1.default.post(verificationUrl);
+                if (!captchaVerification.data.success) {
+                    resp.status(400).json({ message: 'Error: No se pudo verificar el CAPTCHA.' });
+                    return;
+                }
                 // Verificar si el correo ya está registrado
-                const [existingUser] = yield database_1.default.query('SELECT * FROM usuarios WHERE Correo = ?', [Correo]);
-                console.log('Resultado de la consulta:', existingUser);
-                // Verificar si existingUser es un array y tiene elementos
+                const [existingUser] = yield database_1.default.query('SELECT * FROM usuarios WHERE Correo = ?', [correo]);
                 if (Array.isArray(existingUser) && existingUser.length > 0) {
                     resp.status(400).json({ message: 'El correo ya está registrado' });
                     return;
                 }
                 // Encriptar la contraseña
                 const saltRounds = 10;
-                const hashedPassword = yield bcrypt_1.default.hash(Contrasena, saltRounds);
+                const hashedPassword = yield bcrypt_1.default.hash(contrasena, saltRounds);
                 // Insertar el nuevo usuario en la base de datos
                 yield database_1.default.query('INSERT INTO usuarios SET ?', [
                     {
-                        Nombre,
-                        Correo,
+                        nombre,
+                        correo,
                         Contrasena: hashedPassword,
-                        Rol
+                        rol
                     }
                 ]);
                 resp.json({ message: 'Usuario registrado exitosamente' });

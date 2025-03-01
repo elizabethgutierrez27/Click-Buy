@@ -5,13 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Click & Buy</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Widget de Accesibilidad (UserWay) -->
-    <script src="https://cdn.userway.org/widget.js" data-account="hgI1NF8L6F"  ></script>
-    <!-- Chat de Tidio -->
-    <script src="//code.tidio.co/3rxpk5too0cozm4rzr1hqf0rc9sksfp7.js" async></script>
+  <!-- Widget de Accesibilidad (UserWay) -->
+  <script src="https://cdn.userway.org/widget.js" data-account="hgI1NF8L6F"></script>
+  <!-- Chat de Tidio -->
+  <script src="//code.tidio.co/3rxpk5too0cozm4rzr1hqf0rc9sksfp7.js" async></script>
+  <style>
+    /* Estilos para centrar y personalizar los botones */
+    .hero-buttons {
+      display: flex;
+      justify-content: center; /* Centra los botones horizontalmente */
+      gap: 20px; /* Espacio entre los botones */
+      margin-top: 20px; /* Espacio superior */
+    }
 
+    .btn-primary, .btn-secondary {
+      padding: 12px 30px;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 25px; /* Bordes redondeados */
+      text-decoration: none;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      text-align: center;
+    }
 
-    </head>
+    .btn-primary {
+      background-color: #AC66F2; /* Color morado */
+      color: white;
+      border: 2px solid #AC66F2; /* Borde morado */
+    }
+
+    .btn-secondary {
+      background-color: #AC66F2; /* Morado más claro */
+      color: white;
+      border: 2px solid #AC66F2; /* Borde morado */
+    }
+
+    .btn-primary:hover, .btn-secondary:hover {
+      transform: scale(1.05); /* Efecto de escala al pasar el mouse */
+      opacity: 0.9; /* Ligera transparencia */
+    }
+  </style>
+</head>
 
 <body>
   <!-- Hero Section -->
@@ -19,7 +53,10 @@
     <div class="hero-content">
       <h1>Click & Buy</h1>
       <p>La forma más rápida y sencilla de hacer tus compras con tecnología de escaneo inteligente.</p>
-      <a href="/producto" class="btn-primary">Ver Productos</a>
+      <div class="hero-buttons">
+        <a href="/producto" class="btn-primary">Explorar Productos</a>
+        <a href="/registro" class="btn-secondary">¡Únete Ahora!</a> <!-- Texto más llamativo -->
+      </div>
     </div>
   </header>
 
@@ -45,8 +82,6 @@
     </div>
   </section>
 
-  
-
   <!-- Contact Section -->
   <section class="contact">
     <h2>Contáctanos</h2>
@@ -59,10 +94,10 @@
     </form>
   </section>
 
-   <!-- Botón para ir abajo -->
-   <button *ngIf="showScrollDown" class="scroll-btn down" (click)="scrollToBottom()">↓</button>
+  <!-- Botón para ir abajo -->
+  <button *ngIf="showScrollDown" class="scroll-btn down" (click)="scrollToBottom()">↓</button>
 
-   <!-- Botón para ir arriba -->
-   <button *ngIf="showScrollUp" class="scroll-btn up" (click)="scrollToTop()">↑</button>
+  <!-- Botón para ir arriba -->
+  <button *ngIf="showScrollUp" class="scroll-btn up" (click)="scrollToTop()">↑</button>
 </body>
 </html>

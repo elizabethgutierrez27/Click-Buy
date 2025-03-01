@@ -19,7 +19,8 @@ export class MiCuentaComponent implements OnInit{
   }
 
   obtenerDatosUsuario() {
-    this.usuario = this.authService.isAuthenticated();
+    this.usuario = this.authService.getUsuario(); 
+    console.log('Datos del usuario:', this.usuario); 
   }
 
   cerrarSesion() {

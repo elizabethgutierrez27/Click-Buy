@@ -43,6 +43,6 @@ export const routes: Routes = [
     {path: 'serverError', component:ServerErrorComponent},
     { path: 'error-404', component: PaginaErrorComponent }, 
     {path: 'ayuda', component: AyudaComponent},
-    {path: 'miCuenta', component: MiCuentaComponent},
+    {path: 'miCuenta', component: MiCuentaComponent, canActivate: [authGuard]},
   { path: '**', redirectTo: '/error-404' }
 ];

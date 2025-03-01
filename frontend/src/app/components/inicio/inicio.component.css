@@ -263,3 +263,36 @@ body {
   pointer-events: none;
 }
 
+.hero-buttons {
+  display: flex;
+  gap: 15px; /* Espacio entre los botones */
+}
+
+.btn-primary, .btn-secondary {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #e57373; /* Color rojo similar al de Liverpool */
+  color: white;
+}
+
+.btn-secondary {
+  background-color: #ffffff; /* Fondo blanco */
+  color: #e57373; /* Texto rojo */
+  border: 2px solid #e57373; /* Borde rojo */
+}
+
+.btn-primary:hover {
+  background-color: #e57373; /* Rojo más oscuro al pasar el mouse */
+}
+
+.btn-secondary:hover {
+  background-color: #e57373; /* Fondo rojo al pasar el mouse */
+  color: white; /* Texto blanco al pasar el mouse */
+}

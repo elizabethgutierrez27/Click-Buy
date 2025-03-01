@@ -86,7 +86,7 @@ class UsuariosController {
     
                 if (isPasswordValid) {
                     const token = jwt.sign(
-                        { id: user.Id, correo: user.Correo, rol: user.Rol },
+                        { id: user.Id, nombre: user.Nombre, correo: user.Correo, rol: user.Rol },
                         JWT_SECRET,
                         { expiresIn: '1h' }
                     );
@@ -166,13 +166,32 @@ class UsuariosController {
 
     public async create(req: Request, resp: Response): Promise<void> {
         try {
-            const { Nombre, Correo, Contrasena, Rol} = req.body;
+            const { nombre, correo, contrasena, rol, 'g-recaptcha-response': captchaResponse } = req.body;
+    
+            // Verificar que la contraseña esté presente
+            if (!contrasena) {
+                resp.status(400).json({ message: 'La contraseña es requerida.' });
+                return;
+            }
+    
+            // Verificar el CAPTCHA primero
+            if (!captchaResponse) {
+                resp.status(400).json({ message: 'Error: No se recibió la respuesta del CAPTCHA.' });
+                return;
+            }
+    
+            const secretKey = '6LeO6t0qAAAAAP6sTjj82wcVOpE5tQUIBlP1izdu'; // Reemplaza con tu Secret Key
+            const verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${captchaResponse}`;
+    
+            const captchaVerification = await axios.post(verificationUrl);
+            if (!captchaVerification.data.success) {
+                resp.status(400).json({ message: 'Error: No se pudo verificar el CAPTCHA.' });
+                return;
+            }
+    
             // Verificar si el correo ya está registrado
-            const [existingUser] = await pool.query('SELECT * FROM usuarios WHERE Correo = ?', [Correo]);
+            const [existingUser] = await pool.query('SELECT * FROM usuarios WHERE Correo = ?', [correo]);
     
-            console.log('Resultado de la consulta:', existingUser);
-    
-            // Verificar si existingUser es un array y tiene elementos
             if (Array.isArray(existingUser) && existingUser.length > 0) {
                 resp.status(400).json({ message: 'El correo ya está registrado' });
                 return;
@@ -180,15 +199,15 @@ class UsuariosController {
     
             // Encriptar la contraseña
             const saltRounds = 10;
-            const hashedPassword = await bcrypt.hash(Contrasena, saltRounds);
+            const hashedPassword = await bcrypt.hash(contrasena, saltRounds);
     
             // Insertar el nuevo usuario en la base de datos
             await pool.query('INSERT INTO usuarios SET ?', [
                 { 
-                    Nombre, 
-                    Correo, 
+                    nombre, 
+                    correo, 
                     Contrasena: hashedPassword, 
-                    Rol 
+                    rol 
                 }
             ]);
     
